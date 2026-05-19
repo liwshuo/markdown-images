@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 880">
+<!-- design-philosophy: github-technical -->
+<!-- accent-color: #5178c6 -->
+<!-- grid-base: 8 -->
+
+<rect x="0" y="0" width="1280" height="880" fill="#ffffff"/>
+
+<!-- Title -->
+<text x="48" y="48" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2329">LOP · 客户端 VAD 结合 Heartbeat 扩展架构</text>
+<text x="48" y="70" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8f959e">端侧低功耗静音检测 → 复用心跳协议上报 → 推荐与成长中台联动干预</text>
+
+<!-- Legend -->
+<g font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">
+  <rect x="760" y="36" width="14" height="14" fill="#dff5e5" stroke="#646a73" stroke-width="1"/>
+  <text x="780" y="47">Client / 入口</text>
+  <rect x="860" y="36" width="14" height="14" fill="#f0f4fc" stroke="#646a73" stroke-width="1"/>
+  <text x="880" y="47">Service / API</text>
+  <rect x="970" y="36" width="14" height="14" fill="#fef1ce" stroke="#646a73" stroke-width="1"/>
+  <text x="990" y="47">Queue / Cache</text>
+  <rect x="1080" y="36" width="14" height="14" fill="#eae2fe" stroke="#646a73" stroke-width="1"/>
+  <text x="1100" y="47">Storage</text>
+  <rect x="1170" y="36" width="14" height="14" fill="#f5f5f5" stroke="#646a73" stroke-width="1"/>
+  <text x="1190" y="47">External</text>
+</g>
+
+<!-- ===== Layer 1: Client (Android / iOS) ===== -->
+<rect x="48" y="100" width="1184" height="200" fill="#ffffff" stroke="#dee0e3" stroke-width="1" rx="2"/>
+<text x="64" y="124" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2329">L1 · 端侧采集与 VAD 模块  Client (Android / iOS)</text>
+<text x="64" y="142" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">采集旁路 → 轻量 VAD → 内存态聚合，不增加推流链路延迟</text>
+
+<!-- AudioRecord -->
+<rect x="80" y="170" width="176" height="100" fill="#dff5e5" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="92" y="188" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[CAPTURE]</text>
+<text x="92" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">AudioRecord</text>
+<text x="92" y="234" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">麦克风 / RTC SDK</text>
+<text x="92" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">采集前置入口</text>
+
+<!-- PCM Buffer (bypass) -->
+<rect x="304" y="170" width="176" height="100" fill="#dff5e5" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="316" y="188" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[BYPASS]</text>
+<text x="316" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">PCM Buffer</text>
+<text x="316" y="234" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">编码前 copy 一份</text>
+<text x="316" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">10–30ms 切片</text>
+
+<!-- WebRTC VAD -->
+<rect x="528" y="170" width="176" height="100" fill="#dff5e5" stroke="#5178c6" stroke-width="1.5" rx="2"/>
+<text x="540" y="188" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[VAD ENGINE]</text>
+<text x="540" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">WebRTC VAD</text>
+<text x="540" y="234" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">裁剪版 · 低功耗</text>
+<text x="540" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">人声 / 静音二分类</text>
+
+<!-- State Aggregator -->
+<rect x="752" y="170" width="220" height="100" fill="#dff5e5" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="764" y="188" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[STATE AGG]</text>
+<text x="764" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">VAD State Aggregator</text>
+<text x="764" y="234" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">continuous_silent_ms</text>
+<text x="764" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">speech_ratio_last_1min</text>
+
+<!-- Heartbeat Client -->
+<rect x="1000" y="170" width="216" height="100" fill="#dff5e5" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="1012" y="188" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[CLIENT POLL]</text>
+<text x="1012" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">livesdk_anchor_heartbeat</text>
+<text x="1012" y="234" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">复用主播心跳轮询</text>
+<text x="1012" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">payload 注入 vad_stats</text>
+
+<!-- Client internal arrows -->
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#646a73"/>
+  </marker>
+  <marker id="arrAcc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5178c6"/>
+  </marker>
+</defs>
+
+<line x1="256" y1="220" x2="304" y2="220" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="480" y1="220" x2="528" y2="220" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="704" y1="220" x2="752" y2="220" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="972" y1="220" x2="1000" y2="220" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ===== Layer 2: Protocol (vad_stats payload) ===== -->
+<rect x="48" y="324" width="1184" height="120" fill="#ffffff" stroke="#dee0e3" stroke-width="1" rx="2"/>
+<text x="64" y="348" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2329">L2 · 协议扩展 Heartbeat Payload</text>
+<text x="64" y="366" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">在已有 livesdk_anchor_heartbeat 上新增 vad_stats 字段，零新增协议成本</text>
+
+<rect x="320" y="380" width="640" height="48" fill="#fef1ce" stroke="#5178c6" stroke-width="1.5" rx="2"/>
+<text x="336" y="400" font-family="Menlo, Consolas, monospace" font-size="11" fill="#1f2329">"vad_stats": {</text>
+<text x="352" y="416" font-family="Menlo, Consolas, monospace" font-size="11" fill="#1f2329">"continuous_silent_ms": 45000,  "speech_ratio_last_1min": 0.15  }</text>
+
+<!-- L1 -> L2 accent -->
+<path d="M 1108 270 V 300 H 640 V 380" fill="none" stroke="#5178c6" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+
+<!-- ===== Layer 3: Server gateway & cache ===== -->
+<rect x="48" y="468" width="1184" height="180" fill="#ffffff" stroke="#dee0e3" stroke-width="1" rx="2"/>
+<text x="64" y="492" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2329">L3 · 心跳网关与特征通道  Server / Middleware</text>
+<text x="64" y="510" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">解析 payload → 写入实时特征通道，下游订阅消费</text>
+
+<!-- Heartbeat Gateway -->
+<rect x="160" y="540" width="240" height="84" fill="#f0f4fc" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="172" y="558" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[API]</text>
+<text x="172" y="582" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Heartbeat Gateway</text>
+<text x="172" y="600" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">解析 vad_stats</text>
+<text x="172" y="616" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">校验 / 限流 / 路由</text>
+
+<!-- Redis -->
+<rect x="480" y="540" width="240" height="84" fill="#fef1ce" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="492" y="558" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[CACHE]</text>
+<text x="492" y="582" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Redis · Realtime Feature</text>
+<text x="492" y="600" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">room_id → vad_stats</text>
+<text x="492" y="616" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">秒级读取 · TTL 60s</text>
+
+<!-- MQ -->
+<rect x="800" y="540" width="240" height="84" fill="#fef1ce" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="812" y="558" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[QUEUE]</text>
+<text x="812" y="582" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Message Queue</text>
+<text x="812" y="600" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">vad_event topic</text>
+<text x="812" y="616" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">下游异步消费</text>
+
+<!-- L2 -> L3 -->
+<path d="M 640 428 V 468 H 280 V 540" fill="none" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Gateway -> Redis / MQ -->
+<line x1="400" y1="582" x2="480" y2="582" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="720" y1="582" x2="800" y2="582" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ===== Layer 4: Consumer (Rec / Growth) ===== -->
+<rect x="48" y="672" width="1184" height="172" fill="#ffffff" stroke="#dee0e3" stroke-width="1" rx="2"/>
+<text x="64" y="696" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2329">L4 · 消费方与干预闭环  Recommendation &amp; Anchor Growth</text>
+<text x="64" y="714" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">推荐侧降权死水流量，成长中台主动下发互动引导，形成端到端干预闭环</text>
+
+<!-- Rec Engine -->
+<rect x="120" y="740" width="280" height="84" fill="#f0f4fc" stroke="#5178c6" stroke-width="1.5" rx="2"/>
+<text x="132" y="758" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[REC SERVICE]</text>
+<text x="132" y="782" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Rec Engine</text>
+<text x="132" y="800" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">订阅静音特征</text>
+<text x="132" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">冷启流量降权 / 节流</text>
+
+<!-- Growth Platform -->
+<rect x="448" y="740" width="280" height="84" fill="#f0f4fc" stroke="#5178c6" stroke-width="1.5" rx="2"/>
+<text x="460" y="758" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[GROWTH]</text>
+<text x="460" y="782" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Growth Platform</text>
+<text x="460" y="800" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">下发端侧信令</text>
+<text x="460" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">话题卡片 / 互动引导</text>
+
+<!-- Feature Store -->
+<rect x="776" y="740" width="200" height="84" fill="#eae2fe" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="788" y="758" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[STORAGE]</text>
+<text x="788" y="782" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">Feature Store</text>
+<text x="788" y="800" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">离线训练样本</text>
+<text x="788" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">LOP 留存归因</text>
+
+<!-- BI -->
+<rect x="1016" y="740" width="200" height="84" fill="#f5f5f5" stroke="#646a73" stroke-width="1" rx="2"/>
+<text x="1028" y="758" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#5178c6">[EXTERNAL]</text>
+<text x="1028" y="782" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2329">BI / Metrics</text>
+<text x="1028" y="800" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">开口率 · 留存率</text>
+<text x="1028" y="816" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">冷启利用率</text>
+
+<!-- L3 -> L4 -->
+<path d="M 600 624 V 660 H 260 V 740" fill="none" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M 600 624 V 660 H 588 V 740" fill="none" stroke="#5178c6" stroke-width="1.5" marker-end="url(#arrAcc)"/>
+<path d="M 600 624 V 660 H 876 V 740" fill="none" stroke="#646a73" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- Feedback loop: Growth -> Client -->
+<path d="M 588 824 V 852 H 1240 V 220 H 1216" fill="none" stroke="#5178c6" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrAcc)"/>
+<text x="1126" y="846" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#5178c6">下发互动信令 · 闭环干预</text>
+
+</svg>
