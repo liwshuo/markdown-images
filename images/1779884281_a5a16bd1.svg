@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 880" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<!-- design-philosophy: github-technical -->
+<!-- accent-color: #2f6feb -->
+<!-- grid-base: 8 -->
+
+<rect x="0" y="0" width="1480" height="880" fill="#ffffff"/>
+
+<!-- Title -->
+<text x="40" y="44" font-size="20" font-weight="700" fill="#1f2329">doFrame 阻塞与起播消息重排机制</text>
+<text x="40" y="68" font-size="13" fill="#6e7781">播放器创建后，把下一帧 doFrame 提前到队头执行，让 surface 与 RenderThread 尽早进入异步渲染</text>
+
+<!-- Legend -->
+<g font-size="11" fill="#57606a">
+  <rect x="1040" y="36" width="14" height="10" rx="2" fill="#fee3e2" stroke="#d25d5a" stroke-width="1"/>
+  <text x="1060" y="45">阻塞 / 旧机制</text>
+  <rect x="1170" y="36" width="14" height="10" rx="2" fill="#dff5e5" stroke="#509863" stroke-width="1"/>
+  <text x="1190" y="45">提前 / 新机制</text>
+  <rect x="1290" y="36" width="14" height="10" rx="2" fill="#f0f4fc" stroke="#2f6feb" stroke-width="1"/>
+  <text x="1310" y="45">主线程关键步骤</text>
+</g>
+
+<!-- ============== LEFT: OLD MECHANISM ============== -->
+<rect x="40" y="96" width="680" height="560" rx="8" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+<rect x="40" y="96" width="680" height="36" rx="8" fill="#fee3e2"/>
+<rect x="40" y="120" width="680" height="12" fill="#fee3e2"/>
+<text x="60" y="120" font-size="14" font-weight="700" fill="#a8332f">旧机制 · doFrame 排队等待</text>
+<text x="500" y="120" font-size="11" fill="#a8332f">播放器创建 → 调用播放 ≈ 300ms（低端机）</text>
+
+<!-- MessageQueue container -->
+<rect x="64" y="156" width="632" height="148" rx="6" fill="#fafbfc" stroke="#dee0e3"/>
+<text x="80" y="178" font-size="12" font-weight="700" fill="#1f2329">MessageQueue（主线程）</text>
+<text x="200" y="178" font-size="11" fill="#8f959e">nativePollOnce ← vsync · 同步屏障仅挡新消息</text>
+
+<!-- Queued business messages -->
+<g font-size="11" fill="#a8332f">
+  <rect x="80" y="196" width="96" height="36" rx="4" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="128" y="213" text-anchor="middle">启动业务</text>
+  <text x="128" y="226" text-anchor="middle">Message</text>
+
+  <rect x="184" y="196" width="96" height="36" rx="4" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="232" y="213" text-anchor="middle">onPageSelected</text>
+  <text x="232" y="226" text-anchor="middle">回调</text>
+
+  <rect x="288" y="196" width="96" height="36" rx="4" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="336" y="213" text-anchor="middle">业务 Message</text>
+  <text x="336" y="226" text-anchor="middle">堆积…</text>
+
+  <rect x="392" y="196" width="120" height="36" rx="4" fill="#fef1ce" stroke="#d4b45b"/>
+  <text x="452" y="213" text-anchor="middle" fill="#7a5a17">onWindowFocusChange</text>
+  <text x="452" y="226" text-anchor="middle" fill="#7a5a17">无效 doFrame 调度</text>
+
+  <rect x="520" y="196" width="160" height="36" rx="4" fill="#f0f4fc" stroke="#2f6feb"/>
+  <text x="600" y="213" text-anchor="middle" fill="#1f4a9e">Choreographer.doFrame</text>
+  <text x="600" y="226" text-anchor="middle" fill="#1f4a9e">（排在队尾）</text>
+</g>
+
+<!-- Queue order arrow -->
+<line x1="80" y1="252" x2="680" y2="252" stroke="#bbbfc4" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="80" y="270" font-size="10" fill="#8f959e">队头 head</text>
+<text x="640" y="270" font-size="10" fill="#8f959e">队尾 tail</text>
+<text x="380" y="290" font-size="11" fill="#a8332f" text-anchor="middle">► 启动期消息已 post，先于 doFrame 执行 → doFrame 被延后</text>
+
+<!-- Old chain steps -->
+<g font-size="11">
+  <rect x="64" y="324" width="160" height="56" rx="6" fill="#f0f4fc" stroke="#2f6feb"/>
+  <text x="144" y="346" text-anchor="middle" font-weight="600" fill="#1f4a9e">ViewRootImpl</text>
+  <text x="144" y="364" text-anchor="middle" fill="#57606a">setView · 注册 vsync</text>
+
+  <rect x="248" y="324" width="160" height="56" rx="6" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="328" y="346" text-anchor="middle" font-weight="600" fill="#a8332f">doFrame 排队</text>
+  <text x="328" y="364" text-anchor="middle" fill="#a8332f">等待存量消息执行完</text>
+
+  <rect x="432" y="324" width="160" height="56" rx="6" fill="#fef1ce" stroke="#d4b45b"/>
+  <text x="512" y="346" text-anchor="middle" font-weight="600" fill="#7a5a17">layout / preDraw</text>
+  <text x="512" y="364" text-anchor="middle" fill="#7a5a17">SurfaceView.updateSurface</text>
+
+  <line x1="224" y1="352" x2="248" y2="352" stroke="#bbbfc4" stroke-width="1.5" marker-end="url(#arrR)"/>
+  <line x1="408" y1="352" x2="432" y2="352" stroke="#bbbfc4" stroke-width="1.5" marker-end="url(#arrR)"/>
+</g>
+
+<g font-size="11">
+  <rect x="64" y="404" width="160" height="56" rx="6" fill="#fef1ce" stroke="#d4b45b"/>
+  <text x="144" y="426" text-anchor="middle" font-weight="600" fill="#7a5a17">surfaceCreated</text>
+  <text x="144" y="444" text-anchor="middle" fill="#7a5a17">回调延后触发</text>
+
+  <rect x="248" y="404" width="160" height="56" rx="6" fill="#fef1ce" stroke="#d4b45b"/>
+  <text x="328" y="426" text-anchor="middle" font-weight="600" fill="#7a5a17">RenderThread</text>
+  <text x="328" y="444" text-anchor="middle" fill="#7a5a17">渲染开始时间晚</text>
+
+  <rect x="432" y="404" width="160" height="56" rx="6" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="512" y="426" text-anchor="middle" font-weight="600" fill="#a8332f">视频起播延迟</text>
+  <text x="512" y="444" text-anchor="middle" fill="#a8332f">首帧呈现慢</text>
+
+  <line x1="144" y1="380" x2="144" y2="404" stroke="#bbbfc4" stroke-width="1.5" marker-end="url(#arrD)"/>
+  <line x1="224" y1="432" x2="248" y2="432" stroke="#bbbfc4" stroke-width="1.5" marker-end="url(#arrR)"/>
+  <line x1="408" y1="432" x2="432" y2="432" stroke="#bbbfc4" stroke-width="1.5" marker-end="url(#arrR)"/>
+</g>
+
+<!-- Old summary -->
+<rect x="64" y="488" width="624" height="148" rx="6" fill="#fafbfc" stroke="#dee0e3" stroke-dasharray="4,3"/>
+<text x="80" y="510" font-size="12" font-weight="700" fill="#1f2329">关键问题</text>
+<g font-size="11" fill="#57606a">
+  <text x="80" y="532">① 同步屏障只挡新消息，启动阶段更早 post 的业务 Message 仍优先执行</text>
+  <text x="80" y="552">② doFrame 必须等队列中存量消息处理完才能轮到，layout / preDraw / updateSurface 整体后移</text>
+  <text x="80" y="572">③ surfaceCreated 回调晚 → 播放器拿不到 surface → RenderThread 与解码无法并行启动</text>
+  <text x="80" y="592">④ onWindowFocusChange 还会再调度一次 doFrame，但此时 ViewTree 无变更，纯粹浪费主线程</text>
+  <text x="80" y="616" fill="#a8332f" font-weight="600">结果：低端机播放器创建 → 调用播放 ≈ 300ms</text>
+</g>
+
+<!-- ============== RIGHT: NEW MECHANISM ============== -->
+<rect x="760" y="96" width="680" height="560" rx="8" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+<rect x="760" y="96" width="680" height="36" rx="8" fill="#dff5e5"/>
+<rect x="760" y="120" width="680" height="12" fill="#dff5e5"/>
+<text x="780" y="120" font-size="14" font-weight="700" fill="#1f6b3a">新机制 · 播放器创建后提前 doFrame</text>
+<text x="1180" y="120" font-size="11" fill="#1f6b3a">消息重排：把下一帧 doFrame 拉到队头</text>
+
+<!-- Trigger -->
+<rect x="784" y="156" width="632" height="48" rx="6" fill="#f0f4fc" stroke="#2f6feb"/>
+<text x="800" y="178" font-size="12" font-weight="700" fill="#1f4a9e">触发点：feed 播放器（SurfaceView）创建完成</text>
+<text x="800" y="195" font-size="11" fill="#57606a">原理：播放器只依赖下一帧 doFrame 的 layout / preDraw，doFrame 之后即可脱离主线程</text>
+
+<!-- Step 1 -->
+<g font-size="11">
+  <rect x="784" y="224" width="200" height="68" rx="6" fill="#ffffff" stroke="#2f6feb" stroke-width="1.5"/>
+  <text x="800" y="244" font-weight="700" fill="#1f4a9e">① 检查 MessageQueue</text>
+  <text x="800" y="262" fill="#57606a">是否已有 doFrame 消息？</text>
+  <text x="800" y="278" fill="#8f959e">（vsync 通常已就绪）</text>
+
+  <rect x="1004" y="224" width="200" height="68" rx="6" fill="#ffffff" stroke="#2f6feb" stroke-width="1.5"/>
+  <text x="1020" y="244" font-weight="700" fill="#1f4a9e">② 反射 nativePollOnce</text>
+  <text x="1020" y="262" fill="#57606a">无 doFrame 时主动拉起</text>
+  <text x="1020" y="278" fill="#8f959e">让存量 vsync 回调入队</text>
+
+  <rect x="1224" y="224" width="192" height="68" rx="6" fill="#ffffff" stroke="#2f6feb" stroke-width="1.5"/>
+  <text x="1240" y="244" font-weight="700" fill="#1f4a9e">③ 提前到队头执行</text>
+  <text x="1240" y="262" fill="#57606a">从队列取出 doFrame</text>
+  <text x="1240" y="278" fill="#8f959e">立即执行，不等业务消息</text>
+
+  <line x1="984" y1="258" x2="1004" y2="258" stroke="#2f6feb" stroke-width="1.5" marker-end="url(#arrB)"/>
+  <line x1="1204" y1="258" x2="1224" y2="258" stroke="#2f6feb" stroke-width="1.5" marker-end="url(#arrB)"/>
+</g>
+
+<!-- Reordered queue -->
+<rect x="784" y="312" width="632" height="84" rx="6" fill="#fafbfc" stroke="#dee0e3"/>
+<text x="800" y="332" font-size="12" font-weight="700" fill="#1f2329">重排后的 MessageQueue</text>
+<g font-size="11">
+  <rect x="800" y="346" width="160" height="36" rx="4" fill="#dff5e5" stroke="#509863"/>
+  <text x="880" y="362" text-anchor="middle" font-weight="700" fill="#1f6b3a">doFrame</text>
+  <text x="880" y="375" text-anchor="middle" fill="#1f6b3a">（已被提至队头）</text>
+
+  <rect x="968" y="346" width="120" height="36" rx="4" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="1028" y="368" text-anchor="middle" fill="#a8332f">启动业务 Message</text>
+
+  <rect x="1096" y="346" width="120" height="36" rx="4" fill="#fee3e2" stroke="#d25d5a"/>
+  <text x="1156" y="368" text-anchor="middle" fill="#a8332f">onPageSelected</text>
+
+  <rect x="1224" y="346" width="184" height="36" rx="4" fill="#f5f6f7" stroke="#bbbfc4" stroke-dasharray="3,2"/>
+  <text x="1316" y="362" text-anchor="middle" fill="#8f959e" font-style="italic">onWindowFocusChange</text>
+  <text x="1316" y="375" text-anchor="middle" fill="#8f959e" font-size="10">— 取消其 doFrame 调度</text>
+</g>
+
+<!-- Parallel result chain -->
+<g font-size="11">
+  <rect x="784" y="416" width="200" height="64" rx="6" fill="#dff5e5" stroke="#509863"/>
+  <text x="884" y="438" text-anchor="middle" font-weight="700" fill="#1f6b3a">layout · PreDrawListener</text>
+  <text x="884" y="456" text-anchor="middle" fill="#1f6b3a">updateSurface</text>
+  <text x="884" y="472" text-anchor="middle" fill="#57606a">surface 范围尽早确定</text>
+
+  <rect x="1004" y="416" width="200" height="64" rx="6" fill="#dff5e5" stroke="#509863"/>
+  <text x="1104" y="438" text-anchor="middle" font-weight="700" fill="#1f6b3a">surfaceCreated</text>
+  <text x="1104" y="456" text-anchor="middle" fill="#1f6b3a">回调提前触发</text>
+  <text x="1104" y="472" text-anchor="middle" fill="#57606a">播放器拿到 Surface</text>
+
+  <rect x="1224" y="416" width="192" height="64" rx="6" fill="#dff5e5" stroke="#509863"/>
+  <text x="1320" y="438" text-anchor="middle" font-weight="700" fill="#1f6b3a">RenderThread 渲染</text>
+  <text x="1320" y="456" text-anchor="middle" fill="#1f6b3a">+ 视频异步解码</text>
+  <text x="1320" y="472" text-anchor="middle" fill="#57606a">脱离主线程并行</text>
+
+  <line x1="984" y1="448" x2="1004" y2="448" stroke="#509863" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <line x1="1204" y1="448" x2="1224" y2="448" stroke="#509863" stroke-width="1.5" marker-end="url(#arrG)"/>
+</g>
+
+<!-- main thread parallel -->
+<rect x="784" y="496" width="632" height="56" rx="6" fill="#f0f4fc" stroke="#2f6feb" stroke-dasharray="4,3"/>
+<text x="800" y="516" font-size="12" font-weight="700" fill="#1f4a9e">主线程并发执行</text>
+<text x="800" y="536" font-size="11" fill="#57606a">onPageSelected 中的播放事件注册（回调分发到主线程，顺序不影响）+ 其余启动业务 Message</text>
+
+<!-- Cancel WFC note -->
+<rect x="784" y="568" width="632" height="68" rx="6" fill="#fef1ce" stroke="#d4b45b"/>
+<text x="800" y="588" font-size="12" font-weight="700" fill="#7a5a17">额外优化 · 取消 onWindowFocusChange 的 doFrame 调度</text>
+<text x="800" y="608" font-size="11" fill="#57606a">该回调仅是 WMS 通知首帧完成，期间无 ViewTree 变更，重排 doFrame 无实际价值；</text>
+<text x="800" y="624" font-size="11" fill="#57606a">移除后减少首刷链路的业务复杂度，避免无效调度占用主线程时间。</text>
+
+<!-- ============== BOTTOM: RESULT ============== -->
+<rect x="40" y="688" width="1400" height="160" rx="8" fill="#ffffff" stroke="#dee0e3"/>
+<rect x="40" y="688" width="1400" height="36" rx="8" fill="#f0f4fc"/>
+<rect x="40" y="712" width="1400" height="12" fill="#f0f4fc"/>
+<text x="60" y="712" font-size="14" font-weight="700" fill="#1f4a9e">优化效果</text>
+
+<g font-size="12">
+  <rect x="64" y="744" width="432" height="88" rx="6" fill="#fafbfc" stroke="#dee0e3"/>
+  <text x="84" y="768" font-size="12" font-weight="700" fill="#1f2329">基线 · 旧机制</text>
+  <text x="84" y="790" fill="#57606a">低端机：播放器创建 → 调用播放</text>
+  <text x="84" y="816" font-size="22" font-weight="700" fill="#a8332f">≈ 300 ms</text>
+  <text x="220" y="816" font-size="11" fill="#8f959e">（doFrame 排队 + 业务消息阻塞）</text>
+
+  <rect x="520" y="744" width="432" height="88" rx="6" fill="#dff5e5" stroke="#509863"/>
+  <text x="540" y="768" font-size="12" font-weight="700" fill="#1f6b3a">播放消息提前（已上线）</text>
+  <text x="540" y="790" fill="#1f6b3a">首刷 PCT90</text>
+  <text x="540" y="816" font-size="22" font-weight="700" fill="#1f6b3a">−200 ms</text>
+  <text x="660" y="816" font-size="11" fill="#509863">+ HLT 体验收益</text>
+
+  <rect x="976" y="744" width="440" height="88" rx="6" fill="#fef1ce" stroke="#d4b45b"/>
+  <text x="996" y="768" font-size="12" font-weight="700" fill="#7a5a17">取消 windowFocus 调度（实验中）</text>
+  <text x="996" y="790" fill="#7a5a17">首刷平均值</text>
+  <text x="996" y="816" font-size="22" font-weight="700" fill="#7a5a17">−10 ms</text>
+  <text x="1100" y="816" font-size="11" fill="#a37b1e">减少无效 doFrame 调度</text>
+</g>
+
+<!-- Bridge arrow between LEFT and RIGHT -->
+<path d="M 720 376 L 760 376" stroke="#2f6feb" stroke-width="2" fill="none" marker-end="url(#arrBig)"/>
+<text x="740" y="368" text-anchor="middle" font-size="10" fill="#2f6feb" font-weight="700">重排</text>
+
+<defs>
+  <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#bbbfc4"/>
+  </marker>
+  <marker id="arrD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#bbbfc4"/>
+  </marker>
+  <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#2f6feb"/>
+  </marker>
+  <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#509863"/>
+  </marker>
+  <marker id="arrBig" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+    <path d="M0,0 L12,6 L0,12 z" fill="#2f6feb"/>
+  </marker>
+</defs>
+</svg>
