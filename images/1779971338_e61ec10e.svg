@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760">
+<!-- design-philosophy: linear-saas -->
+<!-- accent-color: #5178c6 -->
+<!-- grid-base: 8 -->
+
+<rect x="0" y="0" width="1280" height="760" fill="#ffffff"/>
+
+<!-- Title -->
+<text x="48" y="56" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#1f2329">番茄畅听 Android 冷启动链路</text>
+<text x="48" y="80" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#8f959e">三阶段主链路 · 主线程与异步链路并行 · 关键瓶颈定位</text>
+
+<!-- Section label: 主链路 -->
+<text x="48" y="116" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#5178c6">主链路 · 用户视角</text>
+<line x1="48" y1="124" x2="1232" y2="124" stroke="#dee0e3" stroke-width="1"/>
+
+<!-- Top main flow: 5 stages -->
+<!-- Stage 0: 点击图标 -->
+<g>
+  <rect x="48" y="144" width="160" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="62" cy="160" r="3" fill="#5178c6"/>
+  <text x="72" y="164" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">点击图标</text>
+  <text x="62" y="190" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">用户启动 App</text>
+  <text x="62" y="206" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">冷启动起点</text>
+</g>
+
+<!-- arrow -->
+<path d="M 208 180 L 240 180" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<!-- Stage 1: Application -->
+<g>
+  <rect x="240" y="144" width="220" height="72" rx="6" fill="#eae2fe" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="254" cy="160" r="3" fill="#8569cb"/>
+  <text x="264" y="164" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">Application 阶段</text>
+  <rect x="378" y="152" width="72" height="18" rx="4" fill="#fef1ce" stroke="#dee0e3" stroke-width="1"/>
+  <text x="414" y="165" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">主线程高负载</text>
+  <text x="254" y="190" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2329">SDK 初始化、预加载任务</text>
+  <text x="254" y="206" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">attachBaseContext → onCreate</text>
+</g>
+
+<path d="M 460 180 L 492 180" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<!-- Stage 2: 开屏 -->
+<g>
+  <rect x="492" y="144" width="220" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="506" cy="160" r="3" fill="#5178c6"/>
+  <text x="516" y="164" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">开屏阶段</text>
+  <rect x="630" y="152" width="72" height="18" rx="4" fill="#fef1ce" stroke="#dee0e3" stroke-width="1"/>
+  <text x="666" y="165" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">Feed 触发偏晚</text>
+  <text x="506" y="190" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2329">广告 / 跳转逻辑</text>
+  <text x="506" y="206" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">消息调度穿插主线程</text>
+</g>
+
+<path d="M 712 180 L 744 180" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<!-- Stage 3: 首页 -->
+<g>
+  <rect x="744" y="144" width="220" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="758" cy="160" r="3" fill="#5178c6"/>
+  <text x="768" y="164" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">首页阶段</text>
+  <rect x="882" y="152" width="72" height="18" rx="4" fill="#fee3e2" stroke="#dee0e3" stroke-width="1"/>
+  <text x="918" y="165" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">白屏 Loading</text>
+  <text x="758" y="190" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#1f2329">Feed 展示、数据解析处理</text>
+  <text x="758" y="206" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">显示后短暂无法操作</text>
+</g>
+
+<path d="M 964 180 L 996 180" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<!-- Stage 4: 可交互 -->
+<g>
+  <rect x="996" y="144" width="184" height="72" rx="6" fill="#dff5e5" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="1010" cy="160" r="3" fill="#509863"/>
+  <text x="1020" y="164" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">用户可交互</text>
+  <text x="1010" y="190" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">首页响应输入</text>
+  <text x="1010" y="206" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">冷启动结束</text>
+</g>
+
+<!-- 主线程链路提示带 -->
+<g>
+  <rect x="240" y="240" width="724" height="40" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="252" y="252" width="56" height="16" rx="4" fill="#fef1ce" stroke="#dee0e3" stroke-width="1"/>
+  <text x="280" y="263" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">问题 ①</text>
+  <text x="320" y="265" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#1f2329">主线程链路较长</text>
+  <text x="448" y="265" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">SDK 初始化 + 预加载 + 广告调度 + 消息穿插，三阶段累计阻塞主线程</text>
+</g>
+
+<!-- Section label: 异步链路 -->
+<text x="48" y="332" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#5178c6">异步核心链路 · 数据视角</text>
+<line x1="48" y1="340" x2="1232" y2="340" stroke="#dee0e3" stroke-width="1"/>
+
+<!-- Async chain: 5 nodes -->
+<g>
+  <rect x="48" y="360" width="200" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="62" cy="376" r="3" fill="#5178c6"/>
+  <text x="72" y="380" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">参数构建</text>
+  <text x="62" y="406" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">设备 / 用户 / 实验参数</text>
+  <text x="62" y="422" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">依赖 Application 初始化</text>
+</g>
+
+<path d="M 248 396 L 280 396" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<g>
+  <rect x="280" y="360" width="200" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="294" cy="376" r="3" fill="#5178c6"/>
+  <text x="304" y="380" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">网络请求</text>
+  <text x="294" y="406" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">Feed 接口拉取</text>
+  <text x="294" y="422" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">受网络环境影响</text>
+</g>
+
+<path d="M 480 396 L 512 396" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<g>
+  <rect x="512" y="360" width="200" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="526" cy="376" r="3" fill="#5178c6"/>
+  <text x="536" y="380" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">数据解析</text>
+  <text x="526" y="406" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">JSON → 模型对象</text>
+  <text x="526" y="422" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">CPU 密集</text>
+</g>
+
+<path d="M 712 396 L 744 396" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<g>
+  <rect x="744" y="360" width="200" height="72" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="758" cy="376" r="3" fill="#5178c6"/>
+  <text x="768" y="380" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">二次处理</text>
+  <text x="758" y="406" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">字段补全 / 状态拼装</text>
+  <text x="758" y="422" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">回主线程前的最后一跳</text>
+</g>
+
+<path d="M 944 396 L 976 396" stroke="#bbbfc4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+<g>
+  <rect x="976" y="360" width="204" height="72" rx="6" fill="#dff5e5" stroke="#dee0e3" stroke-width="1"/>
+  <circle cx="990" cy="376" r="3" fill="#509863"/>
+  <text x="1000" y="380" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#1f2329">首页展示</text>
+  <text x="990" y="406" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">Feed 上屏</text>
+  <text x="990" y="422" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">用户首次看到内容</text>
+</g>
+
+<!-- Async bottleneck band -->
+<g>
+  <rect x="48" y="456" width="1132" height="40" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="60" y="468" width="56" height="16" rx="4" fill="#fee3e2" stroke="#dee0e3" stroke-width="1"/>
+  <text x="88" y="479" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">问题 ②</text>
+  <text x="128" y="481" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#1f2329">异步链路可能成为瓶颈</text>
+  <text x="284" y="481" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">Feed 数据预加载偏晚 · 网络 + 解析 + 二次处理串行 · 主线程已就绪但仍需等数据</text>
+</g>
+
+<!-- Cross link: 开屏阶段触发 Feed 请求（虚线，主链路 → 异步链路） -->
+<path d="M 602 216 L 602 340 L 380 340 L 380 360" stroke="#5178c6" stroke-width="1" stroke-dasharray="3 3" fill="none" marker-end="url(#arrowAccent)"/>
+<rect x="408" y="324" width="120" height="18" rx="4" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+<text x="468" y="337" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#5178c6" text-anchor="middle">开屏期间触发 Feed 请求</text>
+
+<!-- Cross link: 异步首页展示 → 主链路首页阶段 -->
+<path d="M 1078 360 L 1078 240 L 854 240 L 854 216" stroke="#509863" stroke-width="1" stroke-dasharray="3 3" fill="none" marker-end="url(#arrowGreen)"/>
+<rect x="900" y="224" width="120" height="18" rx="4" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+<text x="960" y="237" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#509863" text-anchor="middle">数据回灌 → 首页渲染</text>
+
+<!-- Section label: 体验问题 -->
+<text x="48" y="544" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#5178c6">关键体验问题 · 用户感知</text>
+<line x1="48" y1="552" x2="1232" y2="552" stroke="#dee0e3" stroke-width="1"/>
+
+<!-- Three problem cards -->
+<g>
+  <rect x="48" y="572" width="368" height="128" rx="6" fill="#fef1ce" stroke="#dee0e3" stroke-width="1"/>
+  <rect x="48" y="572" width="4" height="128" fill="#d4b45b"/>
+  <rect x="68" y="588" width="40" height="18" rx="4" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+  <text x="88" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">问题 ①</text>
+  <text x="120" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2329">主线程链路长</text>
+  <text x="68" y="630" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">Application 初始化 + 开屏调度</text>
+  <text x="68" y="650" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">主线程被串行任务持续占用</text>
+  <text x="68" y="678" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">影响：启动整体耗时偏高</text>
+</g>
+
+<g>
+  <rect x="436" y="572" width="368" height="128" rx="6" fill="#fee3e2" stroke="#dee0e3" stroke-width="1"/>
+  <rect x="436" y="572" width="4" height="128" fill="#d25d5a"/>
+  <rect x="456" y="588" width="40" height="18" rx="4" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+  <text x="476" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">问题 ②</text>
+  <text x="508" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2329">异步瓶颈</text>
+  <text x="456" y="630" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">Feed 数据预加载偏晚</text>
+  <text x="456" y="650" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">网络 / 解析 / 二次处理串行依赖</text>
+  <text x="456" y="678" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">影响：首页白屏 Loading 出现</text>
+</g>
+
+<g>
+  <rect x="824" y="572" width="356" height="128" rx="6" fill="#f0f4fc" stroke="#dee0e3" stroke-width="1"/>
+  <rect x="824" y="572" width="4" height="128" fill="#5178c6"/>
+  <rect x="844" y="588" width="40" height="18" rx="4" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+  <text x="864" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="10" fill="#1f2329" text-anchor="middle">问题 ③</text>
+  <text x="896" y="601" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#1f2329">体验问题</text>
+  <text x="844" y="630" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">首页白屏 Loading</text>
+  <text x="844" y="650" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="12" fill="#1f2329">首页显示后短暂无法操作</text>
+  <text x="844" y="678" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">影响：用户感知"启动慢"</text>
+</g>
+
+<!-- Footer note -->
+<text x="48" y="732" font-family="PingFang SC, Helvetica, Arial, sans-serif" font-size="11" fill="#8f959e">基于 ByteTech《番茄畅听 Android 启动优化实践》3.1 / 3.2 / 3.3 节内容重绘</text>
+
+<!-- Arrow markers -->
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#bbbfc4"/>
+  </marker>
+  <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#5178c6"/>
+  </marker>
+  <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#509863"/>
+  </marker>
+</defs>
+
+</svg>
