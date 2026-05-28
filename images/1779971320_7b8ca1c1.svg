@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760">
+<!-- design-philosophy: linear-saas -->
+<!-- accent-color: #5178c6 -->
+<!-- grid-base: 8 -->
+
+<rect x="0" y="0" width="1280" height="760" fill="#ffffff"/>
+
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#bbbfc4"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="40" y="48" font-family="Inter, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2329">首页缓存优化逻辑</text>
+<text x="40" y="72" font-family="Inter, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#8f959e">番茄畅听 Android 启动优化实践 · 5.4.4 命中缓存时主动生成推荐样本</text>
+
+<!-- Divider -->
+<line x1="640" y1="100" x2="640" y2="720" stroke="#dee0e3" stroke-width="1" stroke-dasharray="4,4"/>
+
+<!-- ============ LEFT COLUMN: 旧方案 ============ -->
+<g>
+  <!-- Column header -->
+  <rect x="40" y="100" width="560" height="40" rx="6" fill="#f6f7f9" stroke="#dee0e3"/>
+  <circle cx="60" cy="120" r="4" fill="#bbbfc4"/>
+  <text x="76" y="125" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1f2329">旧缓存方案</text>
+  <text x="560" y="125" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">技术指标尚可 · 业务指标偏负</text>
+
+  <!-- Step 1 -->
+  <rect x="40" y="160" width="320" height="64" rx="6" fill="#f0f4fc" stroke="#dee0e3"/>
+  <rect x="40" y="160" width="3" height="64" fill="#5178c6"/>
+  <text x="56" y="184" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">进入首页</text>
+  <text x="56" y="204" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">客户端发起 feed 请求 · 携带 request_id</text>
+
+  <!-- Step 2 -->
+  <rect x="40" y="248" width="320" height="64" rx="6" fill="#f0f4fc" stroke="#dee0e3"/>
+  <rect x="40" y="248" width="3" height="64" fill="#5178c6"/>
+  <text x="56" y="272" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">命中缓存</text>
+  <text x="56" y="292" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">复用上一次推荐结果（book_id 列表）</text>
+
+  <!-- Step 3 -->
+  <rect x="40" y="336" width="320" height="64" rx="6" fill="#ffffff" stroke="#dee0e3"/>
+  <rect x="40" y="336" width="3" height="64" fill="#bbbfc4"/>
+  <text x="56" y="360" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">直接展示缓存数据</text>
+  <text x="56" y="380" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">未补样本 · 推荐侧无新写入</text>
+
+  <!-- Step 4 失败 -->
+  <rect x="40" y="424" width="320" height="64" rx="6" fill="#fee3e2" stroke="#dee0e3"/>
+  <rect x="40" y="424" width="3" height="64" fill="#d25d5a"/>
+  <text x="56" y="448" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">样本特征校验失败</text>
+  <text x="56" y="468" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">request_id × book_id 在样本表中缺失</text>
+
+  <!-- Annotation for step 4 -->
+  <rect x="380" y="424" width="220" height="64" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-dasharray="3,3"/>
+  <text x="392" y="446" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#8f959e">注释 · 失败原因</text>
+  <circle cx="392" cy="462" r="2.5" fill="#d25d5a"/>
+  <text x="402" y="466" font-family="Inter, sans-serif" font-size="11" fill="#1f2329">缓存已被消费</text>
+  <circle cx="392" cy="478" r="2.5" fill="#d25d5a"/>
+  <text x="402" y="482" font-family="Inter, sans-serif" font-size="11" fill="#1f2329">特征值过期 / 未落库</text>
+
+  <!-- Step 5 -->
+  <rect x="40" y="512" width="320" height="64" rx="6" fill="#fef1ce" stroke="#dee0e3"/>
+  <rect x="40" y="512" width="3" height="64" fill="#d4b45b"/>
+  <text x="56" y="536" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">推荐样本丢失</text>
+  <text x="56" y="556" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">样本率低 · 模型无法持续学习</text>
+
+  <!-- Outcome -->
+  <rect x="40" y="600" width="560" height="80" rx="6" fill="#ffffff" stroke="#d25d5a"/>
+  <text x="56" y="624" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#d25d5a">结果</text>
+  <text x="56" y="648" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">技术命中有收益，业务指标偏负</text>
+  <text x="56" y="668" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">缓存命中率↑ 启动耗时↓ · 但点击 / 时长等业务指标↓</text>
+
+  <!-- Connectors left -->
+  <g stroke="#bbbfc4" stroke-width="1.2" fill="none">
+    <line x1="200" y1="224" x2="200" y2="248" marker-end="url(#arrow)"/>
+    <line x1="200" y1="312" x2="200" y2="336" marker-end="url(#arrow)"/>
+    <line x1="200" y1="400" x2="200" y2="424" marker-end="url(#arrow)"/>
+    <line x1="200" y1="488" x2="200" y2="512" marker-end="url(#arrow)"/>
+    <line x1="200" y1="576" x2="200" y2="600" marker-end="url(#arrow)"/>
+  </g>
+</g>
+
+<!-- ============ RIGHT COLUMN: 优化后方案 ============ -->
+<g>
+  <!-- Column header -->
+  <rect x="680" y="100" width="560" height="40" rx="6" fill="#eae2fe" stroke="#dee0e3"/>
+  <circle cx="700" cy="120" r="4" fill="#5178c6"/>
+  <text x="716" y="125" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1f2329">优化后方案</text>
+  <text x="1200" y="125" text-anchor="end" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">技术收益 · 业务收益更平衡</text>
+
+  <!-- Step 1 -->
+  <rect x="680" y="160" width="320" height="64" rx="6" fill="#f0f4fc" stroke="#dee0e3"/>
+  <rect x="680" y="160" width="3" height="64" fill="#5178c6"/>
+  <text x="696" y="184" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">进入首页</text>
+  <text x="696" y="204" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">客户端发起 feed 请求 · 携带 request_id</text>
+
+  <!-- Step 2 -->
+  <rect x="680" y="248" width="320" height="64" rx="6" fill="#f0f4fc" stroke="#dee0e3"/>
+  <rect x="680" y="248" width="3" height="64" fill="#5178c6"/>
+  <text x="696" y="272" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">命中缓存</text>
+  <text x="696" y="292" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">复用上一次推荐结果（book_id 列表）</text>
+
+  <!-- Step 3 关键改动 -->
+  <rect x="680" y="336" width="320" height="64" rx="6" fill="#eae2fe" stroke="#5178c6" stroke-width="1.5"/>
+  <rect x="680" y="336" width="3" height="64" fill="#5178c6"/>
+  <text x="696" y="360" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#1f2329">主动生成推荐样本</text>
+  <text x="696" y="380" font-family="Inter, sans-serif" font-size="11" fill="#1f2329">用新 request_id × 缓存 book_id 写入样本表</text>
+
+  <!-- Highlight tag -->
+  <rect x="1020" y="340" width="220" height="56" rx="6" fill="#ffffff" stroke="#5178c6"/>
+  <rect x="1020" y="340" width="3" height="56" fill="#5178c6"/>
+  <text x="1032" y="362" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#5178c6">关键改动</text>
+  <text x="1032" y="380" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1f2329">命中缓存时补样本</text>
+
+  <!-- Step 4 -->
+  <rect x="680" y="424" width="320" height="64" rx="6" fill="#ffffff" stroke="#dee0e3"/>
+  <rect x="680" y="424" width="3" height="64" fill="#bbbfc4"/>
+  <text x="696" y="448" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">展示缓存数据</text>
+  <text x="696" y="468" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">用户体验保持快 · 启动耗时不退化</text>
+
+  <!-- Step 5 通过 -->
+  <rect x="680" y="512" width="320" height="64" rx="6" fill="#dff5e5" stroke="#dee0e3"/>
+  <rect x="680" y="512" width="3" height="64" fill="#509863"/>
+  <text x="696" y="536" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">样本特征校验通过</text>
+  <text x="696" y="556" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">推荐侧可持续观察用户行为</text>
+
+  <!-- Outcome -->
+  <rect x="680" y="600" width="560" height="80" rx="6" fill="#ffffff" stroke="#509863"/>
+  <text x="696" y="624" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#509863">结果</text>
+  <text x="696" y="648" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1f2329">技术收益与业务收益更平衡</text>
+  <text x="696" y="668" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">缓存命中率保持 · 样本率回升 · 业务指标转正</text>
+
+  <!-- Connectors right -->
+  <g stroke="#bbbfc4" stroke-width="1.2" fill="none">
+    <line x1="840" y1="224" x2="840" y2="248" marker-end="url(#arrow)"/>
+    <line x1="840" y1="312" x2="840" y2="336" marker-end="url(#arrow)"/>
+    <line x1="840" y1="400" x2="840" y2="424" marker-end="url(#arrow)"/>
+    <line x1="840" y1="488" x2="840" y2="512" marker-end="url(#arrow)"/>
+    <line x1="840" y1="576" x2="840" y2="600" marker-end="url(#arrow)"/>
+  </g>
+</g>
+
+<!-- Footer legend -->
+<g>
+  <circle cx="48" cy="734" r="4" fill="#d25d5a"/>
+  <text x="58" y="738" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">问题节点</text>
+  <circle cx="148" cy="734" r="4" fill="#509863"/>
+  <text x="158" y="738" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">改善节点</text>
+  <circle cx="248" cy="734" r="4" fill="#5178c6"/>
+  <text x="258" y="738" font-family="Inter, sans-serif" font-size="11" fill="#8f959e">关键改动</text>
+</g>
+
+</svg>
