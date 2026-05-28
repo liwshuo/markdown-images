@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760">
+<!-- design-philosophy: linear-saas -->
+<!-- accent-color: #8569cb -->
+<!-- grid-base: 8 -->
+
+  <rect x="0" y="0" width="1280" height="760" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="64" y="56" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="20" font-weight="600" fill="#1f2329">消息调度优化前后对比</text>
+  <text x="64" y="82" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" fill="#8f959e">SplashActivity → MainActivity 主线程消息执行顺序</text>
+
+  <!-- Divider -->
+  <line x1="64" y1="100" x2="1216" y2="100" stroke="#dee0e3" stroke-width="1"/>
+
+  <!-- =========================== LEFT: 优化前 =========================== -->
+  <g>
+    <!-- Column header -->
+    <rect x="64" y="128" width="8" height="24" rx="2" fill="#bbbfc4"/>
+    <text x="84" y="146" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="16" font-weight="600" fill="#1f2329">优化前</text>
+    <text x="156" y="146" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" fill="#8f959e">关键消息被杂项消息阻塞</text>
+
+    <!-- Queue container -->
+    <rect x="64" y="168" width="528" height="496" rx="8" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+
+    <!-- Queue label -->
+    <rect x="80" y="184" width="92" height="22" rx="4" fill="#f0f4fc"/>
+    <text x="126" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#5178c6" text-anchor="middle">主线程消息队列</text>
+    <text x="184" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">FIFO · 顺序执行</text>
+
+    <!-- Direction hint -->
+    <text x="576" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="end">先 →  后</text>
+
+    <!-- Messages -->
+    <!-- 1 杂项消息 -->
+    <g>
+      <rect x="80" y="224" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="100" cy="248" r="3" fill="#bbbfc4"/>
+      <text x="116" y="244" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="500" fill="#1f2329">杂项消息</text>
+      <text x="116" y="261" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">三方 SDK 初始化 / View 布局回调</text>
+      <rect x="528" y="240" width="36" height="18" rx="4" fill="#f0f4fc"/>
+      <text x="546" y="252" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="middle">非关键</text>
+    </g>
+
+    <!-- 2 异步回调 -->
+    <g>
+      <rect x="80" y="280" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="100" cy="304" r="3" fill="#bbbfc4"/>
+      <text x="116" y="300" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="500" fill="#1f2329">异步回调</text>
+      <text x="116" y="317" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">预加载结果 / Handler.post 任务</text>
+      <rect x="528" y="296" width="36" height="18" rx="4" fill="#f0f4fc"/>
+      <text x="546" y="308" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="middle">非关键</text>
+    </g>
+
+    <!-- 3 Splash.onPause -->
+    <g>
+      <rect x="80" y="336" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <rect x="80" y="336" width="3" height="48" rx="1.5" fill="#d4b45b"/>
+      <circle cx="100" cy="360" r="3" fill="#d4b45b"/>
+      <text x="116" y="356" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">SplashActivity.onPause</text>
+      <text x="116" y="373" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">关键生命周期 · 被排在杂项消息之后</text>
+      <rect x="520" y="352" width="44" height="18" rx="4" fill="#fef1ce"/>
+      <text x="542" y="364" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8a6d1f" text-anchor="middle">被阻塞</text>
+    </g>
+
+    <!-- 4 其他消息 -->
+    <g>
+      <rect x="80" y="392" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="100" cy="416" r="3" fill="#bbbfc4"/>
+      <text x="116" y="412" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="500" fill="#1f2329">其他消息</text>
+      <text x="116" y="429" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">埋点 / View 重绘 / 业务逻辑</text>
+      <rect x="528" y="408" width="36" height="18" rx="4" fill="#f0f4fc"/>
+      <text x="546" y="420" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="middle">非关键</text>
+    </g>
+
+    <!-- 5 Main.onCreate -->
+    <g>
+      <rect x="80" y="448" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <rect x="80" y="448" width="3" height="48" rx="1.5" fill="#d4b45b"/>
+      <circle cx="100" cy="472" r="3" fill="#d4b45b"/>
+      <text x="116" y="468" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">MainActivity.onCreate</text>
+      <text x="116" y="485" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">关键生命周期 · 排队等待</text>
+      <rect x="520" y="464" width="44" height="18" rx="4" fill="#fef1ce"/>
+      <text x="542" y="476" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8a6d1f" text-anchor="middle">被阻塞</text>
+    </g>
+
+    <!-- 6 首屏展示 -->
+    <g>
+      <rect x="80" y="504" width="496" height="48" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="100" cy="528" r="3" fill="#bbbfc4"/>
+      <text x="116" y="524" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="500" fill="#1f2329">首屏展示</text>
+      <text x="116" y="541" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">Feed 列表绘制 · 用户感知到的"打开成功"</text>
+    </g>
+
+    <!-- Critical path summary -->
+    <rect x="80" y="576" width="496" height="72" rx="6" fill="#fef1ce"/>
+    <text x="96" y="600" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" font-weight="600" fill="#1f2329">主线程关键路径</text>
+    <text x="96" y="620" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">杂项 → 异步回调 → onPause → 其他 → onCreate → 首屏</text>
+    <text x="96" y="638" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8a6d1f">关键消息夹在非关键消息中间，链路长，用户等待时间久</text>
+  </g>
+
+  <!-- =========================== RIGHT: 优化后 =========================== -->
+  <g>
+    <!-- Column header -->
+    <rect x="688" y="128" width="8" height="24" rx="2" fill="#8569cb"/>
+    <text x="708" y="146" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="16" font-weight="600" fill="#1f2329">优化后</text>
+    <text x="780" y="146" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" fill="#8f959e">必要生命周期消息优先执行</text>
+
+    <!-- Queue container -->
+    <rect x="688" y="168" width="528" height="496" rx="8" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+
+    <!-- Queue label -->
+    <rect x="704" y="184" width="92" height="22" rx="4" fill="#eae2fe"/>
+    <text x="750" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8569cb" text-anchor="middle">主线程消息队列</text>
+    <text x="808" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">关键消息插入队首</text>
+
+    <text x="1200" y="199" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="end">先 →  后</text>
+
+    <!-- Highlight badge: 必要消息前移 -->
+    <rect x="704" y="216" width="496" height="28" rx="6" fill="#eae2fe"/>
+    <circle cx="720" cy="230" r="4" fill="#8569cb"/>
+    <text x="734" y="234" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" font-weight="600" fill="#8569cb">必要消息前移</text>
+    <text x="836" y="234" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8569cb" opacity="0.8">无广告时提前跳转 + 调度器将关键 lifecycle 消息插队首</text>
+
+    <!-- 1 Splash.onPause (focus) -->
+    <g>
+      <rect x="704" y="256" width="496" height="48" rx="6" fill="#eae2fe" stroke="#8569cb" stroke-width="1.5"/>
+      <rect x="704" y="256" width="3" height="48" rx="1.5" fill="#8569cb"/>
+      <circle cx="724" cy="280" r="3" fill="#8569cb"/>
+      <text x="740" y="276" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">SplashActivity.onPause</text>
+      <text x="740" y="293" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8569cb">关键生命周期 · 被调度到队首</text>
+      <rect x="1144" y="272" width="44" height="18" rx="4" fill="#ffffff"/>
+      <text x="1166" y="284" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8569cb" text-anchor="middle">优先</text>
+    </g>
+
+    <!-- 2 Main.onCreate (focus) -->
+    <g>
+      <rect x="704" y="312" width="496" height="48" rx="6" fill="#eae2fe" stroke="#8569cb" stroke-width="1.5"/>
+      <rect x="704" y="312" width="3" height="48" rx="1.5" fill="#8569cb"/>
+      <circle cx="724" cy="336" r="3" fill="#8569cb"/>
+      <text x="740" y="332" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">MainActivity.onCreate</text>
+      <text x="740" y="349" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8569cb">关键生命周期 · 紧随其后</text>
+      <rect x="1144" y="328" width="44" height="18" rx="4" fill="#ffffff"/>
+      <text x="1166" y="340" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8569cb" text-anchor="middle">优先</text>
+    </g>
+
+    <!-- 3 首屏展示 -->
+    <g>
+      <rect x="704" y="368" width="496" height="48" rx="6" fill="#dff5e5"/>
+      <rect x="704" y="368" width="3" height="48" rx="1.5" fill="#509863"/>
+      <circle cx="724" cy="392" r="3" fill="#509863"/>
+      <text x="740" y="388" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">首屏展示</text>
+      <text x="740" y="405" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#3d7a4d">Feed 列表更早绘制 · 用户感知"已打开"</text>
+      <rect x="1136" y="384" width="52" height="18" rx="4" fill="#ffffff"/>
+      <text x="1162" y="396" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#509863" text-anchor="middle">提前完成</text>
+    </g>
+
+    <!-- Divider line -->
+    <line x1="720" y1="440" x2="1184" y2="440" stroke="#dee0e3" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="952" y="436" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#8f959e" text-anchor="middle">— 关键路径已完成 · 以下消息延后执行 —</text>
+
+    <!-- 4 杂项消息 -->
+    <g>
+      <rect x="704" y="456" width="496" height="40" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="724" cy="476" r="3" fill="#bbbfc4"/>
+      <text x="740" y="472" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" fill="#8f959e">杂项消息</text>
+      <text x="740" y="488" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#bbbfc4">三方 SDK 初始化 / View 布局回调</text>
+    </g>
+
+    <!-- 5 异步回调 -->
+    <g>
+      <rect x="704" y="504" width="496" height="40" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="724" cy="524" r="3" fill="#bbbfc4"/>
+      <text x="740" y="520" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" fill="#8f959e">异步回调</text>
+      <text x="740" y="536" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#bbbfc4">预加载结果 / Handler.post 任务</text>
+    </g>
+
+    <!-- 6 其他非关键消息 -->
+    <g>
+      <rect x="704" y="552" width="496" height="40" rx="6" fill="#ffffff" stroke="#dee0e3" stroke-width="1"/>
+      <circle cx="724" cy="572" r="3" fill="#bbbfc4"/>
+      <text x="740" y="568" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" fill="#8f959e">其他非关键消息</text>
+      <text x="740" y="584" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="10" fill="#bbbfc4">埋点 / 业务逻辑 / View 重绘</text>
+    </g>
+
+    <!-- Critical path summary -->
+    <rect x="704" y="608" width="496" height="40" rx="6" fill="#dff5e5"/>
+    <text x="720" y="628" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="12" font-weight="600" fill="#1f2329">主线程关键路径</text>
+    <text x="720" y="642" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#3d7a4d">onPause → onCreate → 首屏  ·  缩短主线程核心链路</text>
+  </g>
+
+  <!-- =========================== Bottom Conclusion =========================== -->
+  <rect x="64" y="688" width="1152" height="48" rx="8" fill="#f0f4fc"/>
+  <circle cx="92" cy="712" r="6" fill="#5178c6"/>
+  <text x="112" y="708" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" font-weight="600" fill="#1f2329">结论</text>
+  <line x1="156" y1="700" x2="156" y2="724" stroke="#dee0e3" stroke-width="1"/>
+  <text x="172" y="708" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="13" fill="#1f2329">无广告时提前跳转 + 消息调度器将必要生命周期消息前移，主线程核心链路被压缩</text>
+  <text x="172" y="724" font-family="Inter, -apple-system, 'PingFang SC', sans-serif" font-size="11" fill="#8f959e">用户更早进入首页，启动感知更快；非关键消息延后执行，不阻塞首屏</text>
+
+</svg>
