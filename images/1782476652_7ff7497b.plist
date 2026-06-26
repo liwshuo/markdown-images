@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IESLiveUserModel</key>
+	<string>HTSLiveUser</string>
+	<key>IESLiveUserBadgeInfo</key>
+	<string>HTSLiveBadgeStruct</string>
+	<key>IESLiveUserImageBadgeInfo</key>
+	<string>HTSLiveImageBadge</string>
+	<key>IESLiveUserCombineBadgeInfo</key>
+	<string>HTSLiveCombineBadge</string>
+	<key>IESLiveBadgeBackground</key>
+	<string>HTSLiveCombineBadgeBackground</string>
+	<key>IESLiveVIPInfoModel</key>
+	<string>HTSLiveUserVIPInfo</string>
+	<key>IESLiveVIPBadgeModel</key>
+	<string>HTSLiveVIPBadge</string>
+	<key>IESLiveUserAuthenticationInfo</key>
+	<string>HTSLiveUser_AuthenticationInfo</string>
+	<key>IESLiveActivityAwardInfo</key>
+	<string>HTSLiveUser_ActivityInfo</string>
+	<key>GBLComboBadgeInfo</key>
+	<string>HTSLiveUser_ComboBadgeInfo</string>
+	<key>IESLiveImage</key>
+	<string>HTSLiveImage</string>
+	<key>IESLiveImageContent</key>
+	<string>HTSLiveImage_Content</string>
+	<key>HTSLiveAnchorLevelModel</key>
+	<string>HTSLiveUser_AnchorLevel</string>
+	<key>HTSLiveUserCeremonyBorderModel</key>
+	<string>HTSLiveUser_Border</string>
+	<key>IESLiveUserSubscribeInfo</key>
+	<string>HTSLiveUser_SubscribeInfo</string>
+	<key>IESLiveUserSubscribeBadge</key>
+	<string>HTSLiveUser_SubscribeBadge</string>
+	<key>HTSLivePayGradeModel</key>
+	<string>HTSLiveUser_PayGrade</string>
+	<key>HTSLiveGradeIconModel</key>
+	<string>HTSLiveUser_PayGrade_GradeIcon</string>
+	<key>HTSLiveUserFansclubModel</key>
+	<string>HTSLiveUser_FansClub</string>
+	<key>HTSLiveUserFansclubDataModel</key>
+	<string>HTSLiveUser_FansClub_FansClubData</string>
+	<key>IESLiveRoomAuthStatus</key>
+	<string>HTSLiveRoomAuthStatus</string>
+	<key>IESLiveAnchorLevelPermission</key>
+	<string>HTSLiveRoomAuthStatus_AnchorLevelPermission</string>
+	<key>HTSLiveUserFansclubBadgeModel</key>
+	<string>HTSLiveUser_FansClub_FansClubData_UserBadge</string>
+	<key>IESLiveEventInfo</key>
+	<string>LiveEventInfo</string>
+	<key>IESLiveUserFansClubInfo</key>
+	<string>HTSLiveUser_FansClubInfo</string>
+</dict>
+</plist>
