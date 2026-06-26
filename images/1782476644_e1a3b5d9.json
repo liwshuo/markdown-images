@@ -1,0 +1,1552 @@
+{
+    "paidEvent": {
+        "eventId": {
+            "PaidEvent": "Tq",
+            "IESLivePaidEvent": "T@\"NSNumber\""
+        },
+        "paidType": {
+            "PaidEvent": "Ti",
+            "IESLivePaidEvent": "T@\"NSNumber\""
+        }
+    },
+    "squareCoverImg": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "creator": {
+        "roomContinue": {
+            "IESLiveRoomCreator": "T@\"NSNumber\"",
+            "HTSLiveCreator": "Ti"
+        }
+    },
+    "anchorTabType": {
+        "LiveRoomModel": "TQ",
+        "HTSLiveRoom": "Ti"
+    },
+    "lastPingTime": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "finishTime": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "audioMute": {
+        "LiveRoomModel": "TB",
+        "HTSLiveRoom": "Ti"
+    },
+    "ageRestricted": {
+        "ageInterval": {
+            "IESLiveAgeRestricted": "Tq",
+            "HTSLiveAgeRestricted": "Ti"
+        }
+    },
+    "likeCount": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "maskLayer": {
+        "title": {
+            "defaultFormat": {
+                "bold": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "weight": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                },
+                "italic": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "fontSize": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                }
+            }
+        },
+        "subTitle": {
+            "defaultFormat": {
+                "bold": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "weight": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                },
+                "italic": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "fontSize": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                }
+            }
+        }
+    },
+    "liveSubOnly": {
+        "LiveRoomModel": "TB",
+        "HTSLiveRoom": "Tq"
+    },
+    "officialChannel": {
+        "roleType": {
+            "HTSLiveOfficialChannelInfo": "Ti",
+            "IESLiveOfficialChannel": "TQ"
+        },
+        "delayEnterTime": {
+            "HTSLiveOfficialChannelInfo": "T@\"GPBInt64Int64Dictionary\"",
+            "IESLiveOfficialChannel": "T@\"NSDictionary\""
+        },
+        "backupRoomId": {
+            "HTSLiveOfficialChannelInfo": "Tq",
+            "IESLiveOfficialChannel": "T@\"NSNumber\""
+        },
+        "channelUser": {
+            "comboBadgeInfo": {
+                "icon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "comboCount": {
+                    "GBLComboBadgeInfo": "T@\"NSNumber\"",
+                    "HTSLiveUser_ComboBadgeInfo": "Tq"
+                }
+            },
+            "badgeListArray": {
+                "IESLiveUserModel": "T@\"NSArray\"",
+                "HTSLiveUser": "T@\"NSMutableArray\""
+            },
+            "avatarMedium": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "userRole": {
+                "IESLiveUserModel": "Tq",
+                "HTSLiveUser": "Ti"
+            },
+            "payScores": {
+                "IESLiveUserModel": "T@\"NSNumber\"",
+                "HTSLiveUser": "Tq"
+            },
+            "ticketCount": {
+                "IESLiveUserModel": "T@\"NSNumber\"",
+                "HTSLiveUser": "Tq"
+            },
+            "followInfo": {
+                "followerCount": {
+                    "HTSLiveUser_FollowInfo": "Tq",
+                    "IESLiveUserFollowInfo": "T@\"NSNumber\""
+                },
+                "followingCount": {
+                    "HTSLiveUser_FollowInfo": "Tq",
+                    "IESLiveUserFollowInfo": "T@\"NSNumber\""
+                }
+            },
+            "anchorLevel": {
+                "taskStartTime": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "smallIcon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "taskStartExperience": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "taskTargetExperience": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "lowestExperienceThisLevel": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "level": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "stageLevel": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "taskEndTime": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "profileDialogBgBack": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "highestExperienceThisLevel": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "profileDialogBg": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "taskDecreaseExperience": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                },
+                "experience": {
+                    "HTSLiveUser_AnchorLevel": "Tq",
+                    "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+                }
+            },
+            "border": {
+                "level": {
+                    "HTSLiveUser_Border": "Tq",
+                    "HTSLiveUserCeremonyBorderModel": "T@\"NSNumber\""
+                },
+                "profileDecorationRibbon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "icon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                }
+            },
+            "avatarLarge": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "linkMicStats": {
+                "IESLiveUserModel": "Tq",
+                "HTSLiveUser": "Ti"
+            },
+            "payGrade": {
+                "liveIcon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "icon": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "profileDialogBg": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "imIconWithLevel": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "profileDialogBgBack": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                }
+            },
+            "authorStats": {
+                "videoTotalFavoriteCount": {
+                    "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                    "HTSLiveUser_AuthorStats": "Tq"
+                },
+                "videoTotalCount": {
+                    "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                    "HTSLiveUser_AuthorStats": "Tq"
+                },
+                "videoTotalPlayCount": {
+                    "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                    "HTSLiveUser_AuthorStats": "Tq"
+                }
+            },
+            "authenticationInfo": {
+                "authenticationBadge": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                }
+            },
+            "medal": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "avatarThumb": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "subscribeInfo": {
+                "badge": {
+                    "originImg": {
+                        "content": {
+                            "level": {
+                                "HTSLiveImage_Content": "Tq",
+                                "IESLiveImageContent": "T@\"NSNumber\""
+                            }
+                        },
+                        "imageType": {
+                            "IESLiveImage": "TQ",
+                            "HTSLiveImage": "Ti"
+                        },
+                        "width": {
+                            "IESLiveImage": "T@\"NSNumber\"",
+                            "HTSLiveImage": "Tq"
+                        },
+                        "height": {
+                            "IESLiveImage": "T@\"NSNumber\"",
+                            "HTSLiveImage": "Tq"
+                        }
+                    },
+                    "previewImg": {
+                        "content": {
+                            "level": {
+                                "HTSLiveImage_Content": "Tq",
+                                "IESLiveImageContent": "T@\"NSNumber\""
+                            }
+                        },
+                        "imageType": {
+                            "IESLiveImage": "TQ",
+                            "HTSLiveImage": "Ti"
+                        },
+                        "width": {
+                            "IESLiveImage": "T@\"NSNumber\"",
+                            "HTSLiveImage": "Tq"
+                        },
+                        "height": {
+                            "IESLiveImage": "T@\"NSNumber\"",
+                            "HTSLiveImage": "Tq"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "shareShowTime": {
+        "showTimeOnShare": {
+            "HTSLiveShareShowTime": "Ti",
+            "IESLiveRoomShareShowTime": "Tq"
+        },
+        "showTimeOnEnter": {
+            "HTSLiveShareShowTime": "Ti",
+            "IESLiveRoomShareShowTime": "Tq"
+        }
+    },
+    "linkerMap": {
+        "LiveRoomModel": "T@\"NSDictionary\"",
+        "HTSLiveRoom": "T@\"GPBStringInt64Dictionary\""
+    },
+    "commerceInfo": {
+        "commercePermission": {
+            "HTSLiveCommerceStruct": "Tq",
+            "LiveRoomCommerce": "TB"
+        }
+    },
+    "clientVersion": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "dynamicCover": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "operationLabel": {
+        "content": {
+            "level": {
+                "HTSLiveImage_Content": "Tq",
+                "IESLiveImageContent": "T@\"NSNumber\""
+            }
+        },
+        "imageType": {
+            "IESLiveImage": "TQ",
+            "HTSLiveImage": "Ti"
+        },
+        "width": {
+            "IESLiveImage": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "IESLiveImage": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "liveEventCard": {
+        "event": {
+            "payMethod": {
+                "LiveEventInfo": "Ti",
+                "IESLiveEventInfo": "T@\"NSNumber\""
+            },
+            "ticketAmount": {
+                "LiveEventInfo": "Tq",
+                "IESLiveEventInfo": "T@\"NSNumber\""
+            },
+            "eventId": {
+                "LiveEventInfo": "Tq",
+                "IESLiveEventInfo": "T@\"NSNumber\""
+            },
+            "walletPkgDict": {
+                "LiveEventInfo": "T@\"NSMutableDictionary\"",
+                "IESLiveEventInfo": "T@\"NSDictionary\""
+            }
+        },
+        "cardStartTime": {
+            "EventCard": "Tq",
+            "IESLiveEventCard": "T@\"NSNumber\""
+        }
+    },
+    "roomAuth": {
+        "eventPromotion": {
+            "IESLiveRoomAuthStatus": "Tq",
+            "HTSLiveRoomAuthStatus": "Ti"
+        },
+        "anchorLevelPermission": {
+            "beauty": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "pin": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "mirror": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "commentFilter": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "topic": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "donationSticker": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "voiceEffect": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "liveCenter": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "share": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "interactionQuestion": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "liveIntro": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "effects": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "pictionary": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "viewerRankList": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "hearYourOwnVoice": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "pauseLive": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "flip": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "fullScreenMode": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "sticker": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "promote": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "commentSetting": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "poll": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "moderatorSetting": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            },
+            "customizablePoll": {
+                "IESLiveAnchorLevelPermission": "TQ",
+                "HTSLiveRoomAuthStatus_AnchorLevelPermission": "Ti"
+            }
+        },
+        "shareEffect": {
+            "IESLiveRoomAuthStatus": "Tq",
+            "HTSLiveRoomAuthStatus": "Ti"
+        },
+        "pictionaryPermission": {
+            "IESLiveRoomAuthStatus": "T@\"NSNumber\"",
+            "HTSLiveRoomAuthStatus": "Tq"
+        }
+    },
+    "lotteryFinishTime": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "linkMic": {
+        "followedCount": {
+            "HTSLiveLinkMic": "Tq",
+            "HTSLiveRoomLinkMicModel": "T@\"NSNumber\""
+        },
+        "channelInfo": {
+            "vendor": {
+                "HTSLiveRoomLinkMicChannelInfoModel": "T@\"NSNumber\"",
+                "HTSLiveLinkMic_LinkMicChannelInfo": "Tq"
+            },
+            "layout": {
+                "HTSLiveRoomLinkMicChannelInfoModel": "T@\"NSNumber\"",
+                "HTSLiveLinkMic_LinkMicChannelInfo": "Tq"
+            },
+            "dimension": {
+                "HTSLiveRoomLinkMicChannelInfoModel": "T@\"NSNumber\"",
+                "HTSLiveLinkMic_LinkMicChannelInfo": "Tq"
+            }
+        },
+        "channelId": {
+            "HTSLiveLinkMic": "Tq",
+            "HTSLiveRoomLinkMicModel": "T@\"NSNumber\""
+        },
+        "multiLiveEnum": {
+            "HTSLiveLinkMic": "Tq",
+            "HTSLiveRoomLinkMicModel": "Ti"
+        }
+    },
+    "mosaicStatus": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "cover": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "rectangleCoverImg": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "commerceInfoBackup": {
+        "commercePermission": {
+            "HTSLiveCommerceStruct": "Tq",
+            "LiveRoomCommerce": "TB"
+        }
+    },
+    "warningTag": {
+        "style": {
+            "HTSLiveWarningTag": "Ti",
+            "IESLiveWarningTag": "TQ"
+        },
+        "text": {
+            "defaultFormat": {
+                "bold": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "weight": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                },
+                "italic": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "TB"
+                },
+                "fontSize": {
+                    "HTSLiveTextFormatModel": "T@\"NSNumber\"",
+                    "HTSLiveTextFormat": "Ti"
+                }
+            }
+        },
+        "tagSource": {
+            "HTSLiveWarningTag": "Ti",
+            "IESLiveWarningTag": "Tq"
+        }
+    },
+    "osType": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "userCount": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "streamURL": {
+        "resolutionName": {
+            "HTSLiveStreamUrl": "T@\"NSMutableDictionary\"",
+            "LiveRoomURLModel": "T@\"NSDictionary\""
+        },
+        "provider": {
+            "HTSLiveStreamUrl": "Tq",
+            "LiveRoomURLModel": "T@\"NSNumber\""
+        },
+        "streamDelayMs": {
+            "HTSLiveStreamUrl": "Tq",
+            "LiveRoomURLModel": "T@\"NSNumber\""
+        },
+        "extra": {
+            "gopSec": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "defaultBitrate": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "minBitrate": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "height": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "width": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "fps": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "anchorInteractProfile": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "maxBitrate": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            },
+            "audienceInteractProfile": {
+                "LiveRoomURLExtraModel": "T@\"NSNumber\"",
+                "HTSLiveStreamUrl_StreamUrlExtra": "Tq"
+            }
+        },
+        "flvPullURL": {
+            "HTSLiveStreamUrl": "T@\"NSMutableDictionary\"",
+            "LiveRoomURLModel": "T@\"NSDictionary\""
+        }
+    },
+    "socialInteraction": {
+        "linkmicSceneLinker": {
+            "SocialInteraction": "T@\"GPBInt32Int64Dictionary\"",
+            "IESLiveRoomSocialInteraction": "T@\"NSDictionary\""
+        },
+        "multiLive": {
+            "linkmicServiceVersion": {
+                "IESLiveRoomMultiLive": "Tq",
+                "MultiLive": "Ti"
+            }
+        }
+    },
+    "liveId": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "contentLabel": {
+        "content": {
+            "level": {
+                "HTSLiveImage_Content": "Tq",
+                "IESLiveImageContent": "T@\"NSNumber\""
+            }
+        },
+        "imageType": {
+            "IESLiveImage": "TQ",
+            "HTSLiveImage": "Ti"
+        },
+        "width": {
+            "IESLiveImage": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "IESLiveImage": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "groupSource": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "owner": {
+        "comboBadgeInfo": {
+            "icon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "comboCount": {
+                "GBLComboBadgeInfo": "T@\"NSNumber\"",
+                "HTSLiveUser_ComboBadgeInfo": "Tq"
+            }
+        },
+        "badgeListArray": {
+            "IESLiveUserModel": "T@\"NSArray\"",
+            "HTSLiveUser": "T@\"NSMutableArray\""
+        },
+        "avatarMedium": {
+            "content": {
+                "level": {
+                    "HTSLiveImage_Content": "Tq",
+                    "IESLiveImageContent": "T@\"NSNumber\""
+                }
+            },
+            "imageType": {
+                "IESLiveImage": "TQ",
+                "HTSLiveImage": "Ti"
+            },
+            "width": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            },
+            "height": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            }
+        },
+        "userRole": {
+            "IESLiveUserModel": "Tq",
+            "HTSLiveUser": "Ti"
+        },
+        "payScores": {
+            "IESLiveUserModel": "T@\"NSNumber\"",
+            "HTSLiveUser": "Tq"
+        },
+        "ticketCount": {
+            "IESLiveUserModel": "T@\"NSNumber\"",
+            "HTSLiveUser": "Tq"
+        },
+        "followInfo": {
+            "followerCount": {
+                "HTSLiveUser_FollowInfo": "Tq",
+                "IESLiveUserFollowInfo": "T@\"NSNumber\""
+            },
+            "followingCount": {
+                "HTSLiveUser_FollowInfo": "Tq",
+                "IESLiveUserFollowInfo": "T@\"NSNumber\""
+            }
+        },
+        "anchorLevel": {
+            "taskStartTime": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "smallIcon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "taskStartExperience": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "taskTargetExperience": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "lowestExperienceThisLevel": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "level": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "stageLevel": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "taskEndTime": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "profileDialogBgBack": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "highestExperienceThisLevel": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "profileDialogBg": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "taskDecreaseExperience": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            },
+            "experience": {
+                "HTSLiveUser_AnchorLevel": "Tq",
+                "HTSLiveAnchorLevelModel": "T@\"NSNumber\""
+            }
+        },
+        "border": {
+            "level": {
+                "HTSLiveUser_Border": "Tq",
+                "HTSLiveUserCeremonyBorderModel": "T@\"NSNumber\""
+            },
+            "profileDecorationRibbon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "icon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            }
+        },
+        "avatarLarge": {
+            "content": {
+                "level": {
+                    "HTSLiveImage_Content": "Tq",
+                    "IESLiveImageContent": "T@\"NSNumber\""
+                }
+            },
+            "imageType": {
+                "IESLiveImage": "TQ",
+                "HTSLiveImage": "Ti"
+            },
+            "width": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            },
+            "height": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            }
+        },
+        "linkMicStats": {
+            "IESLiveUserModel": "Tq",
+            "HTSLiveUser": "Ti"
+        },
+        "payGrade": {
+            "liveIcon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "icon": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "profileDialogBg": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "imIconWithLevel": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            },
+            "profileDialogBgBack": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            }
+        },
+        "authorStats": {
+            "videoTotalFavoriteCount": {
+                "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                "HTSLiveUser_AuthorStats": "Tq"
+            },
+            "videoTotalCount": {
+                "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                "HTSLiveUser_AuthorStats": "Tq"
+            },
+            "videoTotalPlayCount": {
+                "HTSLiveUserAuthorStatsModel": "T@\"NSNumber\"",
+                "HTSLiveUser_AuthorStats": "Tq"
+            }
+        },
+        "authenticationInfo": {
+            "authenticationBadge": {
+                "content": {
+                    "level": {
+                        "HTSLiveImage_Content": "Tq",
+                        "IESLiveImageContent": "T@\"NSNumber\""
+                    }
+                },
+                "imageType": {
+                    "IESLiveImage": "TQ",
+                    "HTSLiveImage": "Ti"
+                },
+                "width": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                },
+                "height": {
+                    "IESLiveImage": "T@\"NSNumber\"",
+                    "HTSLiveImage": "Tq"
+                }
+            }
+        },
+        "medal": {
+            "content": {
+                "level": {
+                    "HTSLiveImage_Content": "Tq",
+                    "IESLiveImageContent": "T@\"NSNumber\""
+                }
+            },
+            "imageType": {
+                "IESLiveImage": "TQ",
+                "HTSLiveImage": "Ti"
+            },
+            "width": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            },
+            "height": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            }
+        },
+        "avatarThumb": {
+            "content": {
+                "level": {
+                    "HTSLiveImage_Content": "Tq",
+                    "IESLiveImageContent": "T@\"NSNumber\""
+                }
+            },
+            "imageType": {
+                "IESLiveImage": "TQ",
+                "HTSLiveImage": "Ti"
+            },
+            "width": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            },
+            "height": {
+                "IESLiveImage": "T@\"NSNumber\"",
+                "HTSLiveImage": "Tq"
+            }
+        },
+        "subscribeInfo": {
+            "badge": {
+                "originImg": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                },
+                "previewImg": {
+                    "content": {
+                        "level": {
+                            "HTSLiveImage_Content": "Tq",
+                            "IESLiveImageContent": "T@\"NSNumber\""
+                        }
+                    },
+                    "imageType": {
+                        "IESLiveImage": "TQ",
+                        "HTSLiveImage": "Ti"
+                    },
+                    "width": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    },
+                    "height": {
+                        "IESLiveImage": "T@\"NSNumber\"",
+                        "HTSLiveImage": "Tq"
+                    }
+                }
+            }
+        }
+    },
+    "linkmicLayout": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "createTime": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "liveRoomMode": {
+        "LiveRoomModel": "Tq",
+        "HTSLiveRoom": "Ti"
+    },
+    "boostStatus": {
+        "boostEndTime": {
+            "IESLiveBoostStatus": "Td",
+            "HTSLiveBoostStatus": "Tq"
+        },
+        "taskSource": {
+            "IESLiveBoostStatus": "Tq",
+            "HTSLiveBoostStatus": "Ti"
+        }
+    },
+    "businessLive": {
+        "LiveRoomModel": "Tq",
+        "HTSLiveRoom": "Ti"
+    },
+    "streamCover": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "giftMsgStyle": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    },
+    "liveEventInfo": {
+        "payMethod": {
+            "LiveEventInfo": "Ti",
+            "IESLiveEventInfo": "T@\"NSNumber\""
+        },
+        "ticketAmount": {
+            "LiveEventInfo": "Tq",
+            "IESLiveEventInfo": "T@\"NSNumber\""
+        },
+        "eventId": {
+            "LiveEventInfo": "Tq",
+            "IESLiveEventInfo": "T@\"NSNumber\""
+        },
+        "walletPkgDict": {
+            "LiveEventInfo": "T@\"NSMutableDictionary\"",
+            "IESLiveEventInfo": "T@\"NSDictionary\""
+        }
+    },
+    "pictionaryInfo": {
+        "pictionaryInfo": {
+            "status": {
+                "IESLivePictionaryInfo": "Ti",
+                "IESLiveRoomPictionaryInfo": "TQ"
+            }
+        }
+    },
+    "dynamicCoverLow": {
+        "width": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        },
+        "height": {
+            "LiveRoomDynamicCoverModel": "T@\"NSNumber\"",
+            "HTSLiveImage": "Tq"
+        }
+    },
+    "supportQuiz": {
+        "LiveRoomModel": "TB",
+        "HTSLiveRoom": "Tq"
+    },
+    "roomLayout": {
+        "LiveRoomModel": "T@\"NSNumber\"",
+        "HTSLiveRoom": "Tq"
+    }
+}
