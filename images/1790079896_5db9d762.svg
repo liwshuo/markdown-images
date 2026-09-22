@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .title{font:700 34px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#1f2937}
+      .subtitle{font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#6b7280}
+      .stage{font:700 24px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#111827}
+      .text{font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#374151}
+      .small{font:500 16px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#4b5563}
+      .gain{font:700 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#065f46}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#fffaf5"/>
+  <text x="60" y="70" class="title">抖音 VR 直播首帧链路与优化抓手</text>
+  <text x="60" y="105" class="subtitle">核心方法：统一链路拆分、减少 Android 与 Unity 串行等待、让数据/拉流/资源尽量并行</text>
+
+  <rect x="60" y="170" rx="28" ry="28" width="330" height="520" fill="#eff6ff" stroke="#60a5fa" stroke-width="3"/>
+  <text x="90" y="220" class="stage">阶段 1：初始化</text>
+  <text x="90" y="265" class="text">• Android Application / SDK 初始化</text>
+  <text x="90" y="300" class="text">• Unity 引擎与基础组件初始化</text>
+  <text x="90" y="335" class="text">• 早期最大问题：Unity 初始化过重</text>
+  <text x="90" y="370" class="text">• TTLiveSDK / Settings IO / 无用服务</text>
+  <rect x="90" y="425" rx="18" ry="18" width="270" height="110" fill="#dbeafe"/>
+  <text x="110" y="465" class="small">优化动作</text>
+  <text x="110" y="500" class="text">1) Unity 初始化拆分</text>
+  <text x="110" y="532" class="text">2) 非必要 SDK 裁剪 / 异步化</text>
+  <text x="110" y="564" class="text">3) 直播 SDK 延迟初始化</text>
+  <text x="90" y="620" class="gain">代表收益：~10s → ~5s；另有 80ms / 150ms / 230ms 级优化</text>
+
+  <rect x="440" y="170" rx="28" ry="28" width="330" height="520" fill="#f0fdf4" stroke="#4ade80" stroke-width="3"/>
+  <text x="470" y="220" class="stage">阶段 2：数据请求</text>
+  <text x="470" y="265" class="text">• Unity bridge ready 后，Android 拉 feed</text>
+  <text x="470" y="300" class="text">• 解析房间与流信息</text>
+  <text x="470" y="335" class="text">• 早期问题：Android 在 Unity 初始化期间空转</text>
+  <rect x="470" y="425" rx="18" ry="18" width="270" height="110" fill="#dcfce7"/>
+  <text x="490" y="465" class="small">优化动作</text>
+  <text x="490" y="500" class="text">1) Feed 请求预处理</text>
+  <text x="490" y="532" class="text">2) 直接打 TLS / CDN</text>
+  <text x="490" y="564" class="text">3) 提前准备房间数据</text>
+  <text x="470" y="620" class="gain">代表收益：本地 ~400ms</text>
+
+  <rect x="820" y="170" rx="28" ry="28" width="330" height="520" fill="#fff7ed" stroke="#fb923c" stroke-width="3"/>
+  <text x="850" y="220" class="stage">阶段 3：进房</text>
+  <text x="850" y="265" class="text">• Unity 场景加载</text>
+  <text x="850" y="300" class="text">• Android 创建 Fragment / 进房请求</text>
+  <text x="850" y="335" class="text">• 早期问题：页面创建与拉流强耦合</text>
+  <rect x="850" y="425" rx="18" ry="18" width="270" height="110" fill="#fed7aa"/>
+  <text x="870" y="465" class="small">优化动作</text>
+  <text x="870" y="500" class="text">1) 直播启动预拉流</text>
+  <text x="870" y="532" class="text">2) Feed 点击场景补流信息</text>
+  <text x="870" y="564" class="text">3) 系统 Feed 单独补流信息接口</text>
+  <text x="850" y="620" class="gain">代表收益：200ms / 400ms / 300ms</text>
+
+  <rect x="1200" y="170" rx="28" ry="28" width="330" height="520" fill="#faf5ff" stroke="#c084fc" stroke-width="3"/>
+  <text x="1230" y="220" class="stage">阶段 4：首帧</text>
+  <text x="1230" y="265" class="text">• Android 拉流成功后给 Unity surface</text>
+  <text x="1230" y="300" class="text">• Unity 完成资源加载与渲染</text>
+  <text x="1230" y="335" class="text">• 早期问题：surface 创建太晚</text>
+  <rect x="1230" y="425" rx="18" ry="18" width="270" height="110" fill="#ede9fe"/>
+  <text x="1250" y="465" class="small">优化动作</text>
+  <text x="1250" y="500" class="text">1) Unity 场景初始化拆分</text>
+  <text x="1250" y="532" class="text">2) setSurface 更前置</text>
+  <text x="1250" y="564" class="text">3) 非必要资源后置</text>
+  <text x="1230" y="620" class="gain">代表收益：线上 ~230ms，规划再拿 -200ms</text>
+
+  <line x1="390" y1="430" x2="440" y2="430" stroke="#94a3b8" stroke-width="6" marker-end="url(#arrow)"/>
+  <line x1="770" y1="430" x2="820" y2="430" stroke="#94a3b8" stroke-width="6" marker-end="url(#arrow)"/>
+  <line x1="1150" y1="430" x2="1200" y2="430" stroke="#94a3b8" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <rect x="60" y="740" rx="22" ry="22" width="1470" height="100" fill="#111827" opacity="0.94"/>
+  <text x="95" y="790" style="font:700 20px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#ffffff">沉淀下来的通用原则</text>
+  <text x="95" y="830" style="font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#f9fafb">先把链路拆成可归因的阶段，再用“前移时机、并行任务、预请求/预拉流、懒加载/异步化、按入口单独治理”的方法持续拿收益。</text>
+</svg>
