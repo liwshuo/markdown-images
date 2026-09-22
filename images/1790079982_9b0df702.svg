@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title{font:700 34px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#1f2937}
+      .subtitle{font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#6b7280}
+      .label{font:600 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#111827}
+      .value{font:700 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#065f46}
+      .note{font:500 16px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#4b5563}
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="#fcfcff"/>
+  <text x="60" y="70" class="title">首帧优化收益分布图</text>
+  <text x="60" y="105" class="subtitle">文章披露的关键动作与收益；没有线上数据的动作保留“本地测试”结论</text>
+  <line x1="300" y1="150" x2="300" y2="900" stroke="#cbd5e1" stroke-width="2"/>
+
+  <text x="60" y="175" class="label">Unity 初始化拆分</text>
+  <rect x="300" y="145" width="720" height="38" rx="18" fill="#22c55e" opacity="0.85"/>
+  <text x="1040" y="171" class="value">~10s → ~5s</text>
+
+  <text x="60" y="255" class="label">Feed 请求预处理</text>
+  <rect x="300" y="225" width="120" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <text x="440" y="251" class="value">本地 ~400ms</text>
+
+  <text x="60" y="335" class="label">启动阶段预拉流</text>
+  <rect x="300" y="305" width="60" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <text x="380" y="331" class="value">本地 ~200ms</text>
+
+  <text x="60" y="415" class="label">非必要 SDK 裁剪 / 异步化</text>
+  <rect x="300" y="385" width="24" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <text x="344" y="411" class="value">本地 ~80ms</text>
+
+  <text x="60" y="495" class="label">直播 SDK 初始化优化</text>
+  <rect x="300" y="465" width="75" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <rect x="385" y="465" width="39" height="38" rx="18" fill="#a7f3d0" opacity="0.95"/>
+  <text x="444" y="491" class="value">本地 ~250ms / 线上 ~130ms</text>
+
+  <text x="60" y="575" class="label">Android SDK 延迟初始化</text>
+  <rect x="300" y="545" width="81" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <rect x="391" y="545" width="45" height="38" rx="18" fill="#a7f3d0" opacity="0.95"/>
+  <text x="456" y="571" class="value">本地 ~270ms / 线上 ~150ms</text>
+
+  <text x="60" y="655" class="label">Unity 场景初始化拆分</text>
+  <rect x="300" y="625" width="150" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <rect x="460" y="625" width="69" height="38" rx="18" fill="#a7f3d0" opacity="0.95"/>
+  <text x="549" y="651" class="value">本地 ~500ms / 线上 ~230ms</text>
+
+  <text x="60" y="735" class="label">Feed 点击场景补流信息</text>
+  <rect x="300" y="705" width="195" height="38" rx="18" fill="#60a5fa" opacity="0.9"/>
+  <rect x="505" y="705" width="120" height="38" rx="18" fill="#a7f3d0" opacity="0.95"/>
+  <text x="645" y="731" class="value">本地 ~650ms / 线上 ~400ms</text>
+
+  <text x="60" y="815" class="label">系统 Feed 补流信息接口</text>
+  <rect x="300" y="785" width="90" height="38" rx="18" fill="#a7f3d0" opacity="0.95"/>
+  <text x="410" y="811" class="value">线上 ~300ms</text>
+
+  <rect x="60" y="875" width="1480" height="60" rx="18" fill="#eef2ff"/>
+  <text x="90" y="912" class="note">注：文章还给出后续规划，如系统 App 方案 -500ms、数据请求阶段 -450ms、首帧阶段 Unity 解耦 -80% 等，但部分为规划收益，未作为既成结论写入上图。</text>
+</svg>
