@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .title{font:700 34px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#1f2937}
+      .subtitle{font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#6b7280}
+      .head{font:700 21px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#111827}
+      .cell{font:500 18px 'PingFang SC','Microsoft YaHei',sans-serif;fill:#374151}
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="#fffdf8"/>
+  <text x="60" y="70" class="title">对主播侧场景的迁移地图</text>
+  <text x="60" y="105" class="subtitle">把 VR 直播首帧方法论迁移到主播开播、工具面板、高热场景和性能观测平台</text>
+
+  <rect x="60" y="150" width="260" height="90" rx="20" fill="#fde68a"/>
+  <rect x="320" y="150" width="390" height="90" rx="20" fill="#bfdbfe"/>
+  <rect x="710" y="150" width="390" height="90" rx="20" fill="#bbf7d0"/>
+  <rect x="1100" y="150" width="430" height="90" rx="20" fill="#fecaca"/>
+  <text x="90" y="205" class="head">迁移维度</text>
+  <text x="360" y="205" class="head">主播侧可落地场景</text>
+  <text x="760" y="205" class="head">建议动作</text>
+  <text x="1140" y="205" class="head">可观测指标</text>
+
+  <rect x="60" y="260" width="260" height="130" rx="18" fill="#fffbeb" stroke="#f59e0b"/>
+  <rect x="320" y="260" width="390" height="130" rx="18" fill="#f8fbff" stroke="#60a5fa"/>
+  <rect x="710" y="260" width="390" height="130" rx="18" fill="#f0fdf4" stroke="#4ade80"/>
+  <rect x="1100" y="260" width="430" height="130" rx="18" fill="#fff1f2" stroke="#f87171"/>
+  <text x="90" y="315" class="head">链路分段</text>
+  <text x="350" y="300" class="cell">开播链路：权限、相机、推流、特效、房间建链</text>
+  <text x="350" y="334" class="cell">工具链路：面板打开、素材加载、埋点初始化</text>
+  <text x="740" y="300" class="cell">按入口拆分：冷开播 / 热开播 / 断流恢复 / 工具快捷入口</text>
+  <text x="740" y="334" class="cell">沉淀标准 span 字段，接入 anchor-perf-obs</text>
+  <text x="1130" y="300" class="cell">T_open_live、T_camera_ready、T_rtmp_ready</text>
+  <text x="1130" y="334" class="cell">T_panel_first_show、T_effect_apply、失败率</text>
+
+  <rect x="60" y="420" width="260" height="130" rx="18" fill="#fffbeb" stroke="#f59e0b"/>
+  <rect x="320" y="420" width="390" height="130" rx="18" fill="#f8fbff" stroke="#60a5fa"/>
+  <rect x="710" y="420" width="390" height="130" rx="18" fill="#f0fdf4" stroke="#4ade80"/>
+  <rect x="1100" y="420" width="430" height="130" rx="18" fill="#fff1f2" stroke="#f87171"/>
+  <text x="90" y="475" class="head">前移时机</text>
+  <text x="350" y="460" class="cell">开播前页预申请资源、预热相机、预拉配置</text>
+  <text x="350" y="494" class="cell">高热场景提前准备稳定模式和降级配置</text>
+  <text x="740" y="460" class="cell">把“等待点击后才做”的工作前移到可感知前一屏</text>
+  <text x="740" y="494" class="cell">把必需与非必需初始化彻底拆开</text>
+  <text x="1130" y="460" class="cell">预热命中率、前移命中率、资源准备成功率</text>
+  <text x="1130" y="494" class="cell">预热后开播耗时下降幅度</text>
+
+  <rect x="60" y="580" width="260" height="130" rx="18" fill="#fffbeb" stroke="#f59e0b"/>
+  <rect x="320" y="580" width="390" height="130" rx="18" fill="#f8fbff" stroke="#60a5fa"/>
+  <rect x="710" y="580" width="390" height="130" rx="18" fill="#f0fdf4" stroke="#4ade80"/>
+  <rect x="1100" y="580" width="430" height="130" rx="18" fill="#fff1f2" stroke="#f87171"/>
+  <text x="90" y="635" class="head">并行与懒加载</text>
+  <text x="350" y="620" class="cell">美颜、礼物、贴纸、连麦、小玩法等大模块</text>
+  <text x="350" y="654" class="cell">避免与主推流/首帧关键路径强耦合</text>
+  <text x="740" y="620" class="cell">关键主链路只保留“开播必须项”</text>
+  <text x="740" y="654" class="cell">把工具面板、素材、二方库初始化后置或异步化</text>
+  <text x="1130" y="620" class="cell">主线程阻塞时长、任务串行长度、加载峰值 CPU</text>
+  <text x="1130" y="654" class="cell">高热场景卡顿率、ANR、掉帧率</text>
+
+  <rect x="60" y="740" width="260" height="130" rx="18" fill="#fffbeb" stroke="#f59e0b"/>
+  <rect x="320" y="740" width="390" height="130" rx="18" fill="#f8fbff" stroke="#60a5fa"/>
+  <rect x="710" y="740" width="390" height="130" rx="18" fill="#f0fdf4" stroke="#4ade80"/>
+  <rect x="1100" y="740" width="430" height="130" rx="18" fill="#fff1f2" stroke="#f87171"/>
+  <text x="90" y="795" class="head">防劣化闭环</text>
+  <text x="350" y="780" class="cell">性能看板、AB 回归、灰度巡检、版本门禁</text>
+  <text x="350" y="814" class="cell">特别适合与你的 anchor-perf-obs 平台联动</text>
+  <text x="740" y="780" class="cell">按入口/机型/网络/主播类型自动归因</text>
+  <text x="740" y="814" class="cell">上线前后对照，失败可快速指回子链路</text>
+  <text x="1130" y="780" class="cell">P50/P90 开播耗时、体验分、稳定模式触发率</text>
+  <text x="1130" y="814" class="cell">质量回归报警、实验收益复盘</text>
+</svg>
