@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="840" viewBox="0 0 1440 840">
+  <defs>
+    <style>
+      .title { font: 700 34px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: #111827; }
+      .subtitle { font: 500 18px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: #4b5563; }
+      .boxTitle { font: 700 22px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: #111827; }
+      .boxText { font: 500 17px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: #374151; }
+      .small { font: 500 15px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: #6b7280; }
+      .pill { font: 700 15px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; fill: white; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <rect width="1440" height="840" fill="#f8fafc"/>
+  <text x="70" y="68" class="title">周期性弱网预测闭环（基于 ByteTech 文章整理）</text>
+  <text x="70" y="102" class="subtitle">GPS 路线索引 + 网络节点画像 + Nearline 链路 + 四态状态机 + 主播侧业务动作</text>
+
+  <rect x="70" y="150" rx="24" ry="24" width="270" height="180" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="100" y="194" class="boxTitle">1. 端侧采集</text>
+  <text x="100" y="232" class="boxText">• GPS 轨迹 / 日期类型</text>
+  <text x="100" y="264" class="boxText">• RTT / 丢包 / DNS / TTFB</text>
+  <text x="100" y="296" class="boxText">• 视频卡顿 / 加载失败 / 互动无响应</text>
+
+  <rect x="390" y="150" rx="24" ry="24" width="280" height="180" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="420" y="194" class="boxTitle">2. Nearline 链路</text>
+  <text x="420" y="232" class="boxText">• init / normal / terminate</text>
+  <text x="420" y="264" class="boxText">• 最小 30 秒定时上报</text>
+  <text x="420" y="296" class="boxText">• 下发画像 / 预测 / TTL / 置信度</text>
+
+  <rect x="740" y="110" rx="24" ry="24" width="290" height="220" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="770" y="154" class="boxTitle">3A. GPS 周期索引</text>
+  <text x="770" y="192" class="boxText">• 路线簇 × 方向 × 时段 × 路段</text>
+  <text x="770" y="224" class="boxText">• 工作日 / 周末 / 节假日</text>
+  <text x="770" y="256" class="boxText">• T+1 弱网窗口与等级</text>
+  <text x="770" y="288" class="boxText">• 未来 5 / 10 / 15 分钟接近弱网</text>
+
+  <rect x="1070" y="110" rx="24" ry="24" width="300" height="220" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="1100" y="154" class="boxTitle">3B. 网络节点画像</text>
+  <text x="1100" y="192" class="boxText">• 脱敏 BSSID / Cell ID</text>
+  <text x="1100" y="224" class="boxText">• 当前等级 / 未来变差概率</text>
+  <text x="1100" y="256" class="boxText">• ETA / 根因 Top1 / 推荐策略</text>
+  <text x="1100" y="288" class="boxText">• 置信度 / 新鲜度 / TTL</text>
+
+  <rect x="390" y="420" rx="24" ry="24" width="420" height="210" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+  <text x="420" y="464" class="boxTitle">4. 统一预测对象 + 四态状态机</text>
+  <text x="420" y="502" class="boxText">输出字段：预计开始 / 结束、弱网等级、置信度、根因、TTL、推荐策略</text>
+  <text x="420" y="538" class="boxText">状态机：Normal → Prepare → Protect → Recover</text>
+  <text x="420" y="570" class="boxText">进入快、退出慢；迟滞 + 冷却时间避免反复抖动</text>
+  <text x="420" y="602" class="boxText">GPS 先验与实时 NQE 双门控并行兜底</text>
+
+  <rect x="890" y="420" rx="24" ry="24" width="480" height="260" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/>
+  <text x="920" y="464" class="boxTitle">5. 主播侧业务动作</text>
+  <text x="920" y="502" class="boxText">• 开播前：资源预取、素材缓存补货、候选链路预热</text>
+  <text x="920" y="534" class="boxText">• 开播中：码率 / 并发 / 超时 / 重试 / 弱网降级策略切换</text>
+  <text x="920" y="566" class="boxText">• 互动链路：评论、点赞、礼物、诊断卡片的本地兜底与断点恢复</text>
+  <text x="920" y="598" class="boxText">• 观测体系：提前量、命中率、体验收益、资源代价统一评估</text>
+  <text x="920" y="630" class="boxText">• 适用场景：通勤开播、地铁切网、高热活动、场馆直播、跨区域移动</text>
+
+  <line x1="340" y1="240" x2="390" y2="240" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="670" y1="240" x2="740" y2="220" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1030" y1="220" x2="1070" y2="220" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="885" y1="330" x2="670" y2="420" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="1220" y1="330" x2="1220" y2="420" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+  <line x1="810" y1="525" x2="890" y2="525" stroke="#6366f1" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <rect x="80" y="720" rx="18" ry="18" width="210" height="42" fill="#111827"/>
+  <text x="103" y="748" class="pill">关键收益：把决策时钟拨快</text>
+  <rect x="315" y="720" rx="18" ry="18" width="250" height="42" fill="#1d4ed8"/>
+  <text x="338" y="748" class="pill">关键约束：同一结构化对象供多业务复用</text>
+  <rect x="590" y="720" rx="18" ry="18" width="220" height="42" fill="#b45309"/>
+  <text x="618" y="748" class="pill">关键风险：低样本 / 冷启动 / 隐私</text>
+
+  <text x="70" y="800" class="small">注：该图为根据文章内容重构的架构理解图，用于沉淀主播侧应用分析，不代表原文官方配图。</text>
+</svg>
